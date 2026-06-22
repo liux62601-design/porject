@@ -1,0 +1,147 @@
+{
+  "id": "troubleshooting",
+  "title": "常见问题排查",
+  "description": "常见开发问题的诊断和解决方法汇总。",
+  "category": "支持",
+  "tags": ["调试", "错误", "故障排除", "FAQ"],
+  "date": "2026-06-10",
+  "author": "TechTutorial Team",
+  "readingTime": 12,
+  "difficulty": "intermediate",
+  "content": [
+    {"type": "heading", "level": 2, "text": "概述"},
+    {"type": "paragraph", "text": "本教程汇总了开发过程中最常见的问题及其解决方法。按照问题分类，您可以快速定位并解决当前遇到的困难。"},
+    {"type": "callout", "calloutType": "tip", "title": "排查建议", "text": "遇到问题时，建议按以下顺序排查：**检查硬件连接** > **查看串口日志** > **验证配置文件** > **搜索本文档** > **联系技术支持**。"},
+
+    {"type": "heading", "level": 2, "text": "连接与硬件问题"},
+
+    {"type": "heading", "level": 3, "text": "Q1: 开发板无法被电脑识别"},
+    {"type": "paragraph", "text": "症状：连接 USB 后，设备管理器中没有出现 ST-Link 或串口设备，LED 不亮。"},
+    {"type": "heading", "level": 4, "text": "排查步骤"},
+    {"type": "list", "ordered": true, "items": [
+      "检查 USB 线缆：确认使用的是数据线而非纯充电线。可以尝试用该线缆连接手机到电脑测试是否传输数据。",
+      "更换 USB 端口：尝试使用电脑背面的 USB 端口（直接连接主板的端口供电更稳定）。",
+      "检查驱动：Windows 用户需安装 ST-Link 驱动（C:\\TechTutorial\\drivers\\stlink）。",
+      "检查供电：开发板上的电源指示灯（红色 LED）应亮起。如果不亮，可能是 USB 端口供电不足或开发板硬件问题。",
+      "尝试 DFU 模式：按住 BOOT0 键同时按一下 RST 键，然后松开 BOOT0，进入 DFU 模式。"
+    ]},
+
+    {"type": "heading", "level": 3, "text": "Q2: 串口无输出 / 乱码"},
+    {"type": "paragraph", "text": "症状：程序烧录成功但串口监视器没有输出，或输出的全是乱码。"},
+    {"type": "table", "headers": ["可能原因", "检查方法", "解决方案"],
+      "rows": [
+        ["波特率不匹配", "检查代码中 uart_init 的参数", "确保代码与监视器波特率一致（通常 115200）"],
+        ["时钟配置错误", "检查 system_init 中的时钟配置", "使用 tt-sdk clock --verify 验证实际时钟频率"],
+        ["UART 引脚配置错误", "参考硬件手册确认引脚映射", "PA9=TX, PA10=RX（默认）"],
+        ["串口监视器连接了错误的 COM 口", "设备管理器中确认 COM 口号", "在监视器中选择正确的 COM 口"]
+      ]
+    },
+
+    {"type": "heading", "level": 2, "text": "编译与构建问题"},
+
+    {"type": "heading", "level": 3, "text": "Q3: 编译错误 'arm-none-eabi-gcc: command not found'"},
+    {"type": "paragraph", "text": "原因：编译器未安装或未添加到 PATH 环境变量。"},
+    {"type": "code", "language": "bash", "code": "# 首先检查是否已安装\nwhich arm-none-eabi-gcc\n\n# 如果返回空，检查 SDK 是否正确安装\ntt-sdk doctor\n\n# Windows 用户 — 手动添加到 PATH\n# 1. 打开「系统属性」->「环境变量」\n# 2. 在 PATH 中添加 C:\\TechTutorial\\tools\\bin\n\n# Linux/macOS 用户\nexport PATH=\"/opt/tt-sdk/bin:$PATH\"\n# 将这一行添加到 ~/.bashrc 或 ~/.zshrc 使其永久生效"},
+
+    {"type": "heading", "level": 3, "text": "Q4: 'undefined reference to HAL_xxx' 链接错误"},
+    {"type": "paragraph", "text": "原因：缺少 HAL 库链接或库文件路径不正确。"},
+    {"type": "code", "language": "makefile", "code": "# 在 Makefile 中确保链接了 HAL 库\nLDLIBS += -l:libhal.a\nLIBDIR  = /opt/tt-sdk/lib\n\n# 或者直接包含所需的 HAL 源文件\nHAL_SRCS += /opt/tt-sdk/hal/stm32f7xx_hal_gpio.c\nHAL_SRCS += /opt/tt-sdk/hal/stm32f7xx_hal_uart.c\nHAL_SRCS += /opt/tt-sdk/hal/stm32f7xx_hal_tim.c"},
+    {"type": "paragraph", "text": "也可以通过 project.yaml 配置依赖："},
+    {"type": "code", "language": "yaml", "code": "# project.yaml\ndependencies:\n  hal:\n    modules:\n      - gpio\n      - uart\n      - tim\n      - pwr\n      - dma\n    version: \">=1.0.0\""},
+
+    {"type": "heading", "level": 3, "text": "Q5: 编译成功但 Flash 溢出"},
+    {"type": "paragraph", "text": "症状：region 'FLASH' overflowed by XXXX bytes。"},
+    {"type": "code", "language": "bash", "code": "# 查看各段大小\ntt-sdk size --details\n\n# 输出示例:\n# Section       Size       Address\n# .text         82560      0x08000000\n# .rodata       12480      0x08014280\n# .data          2048      0x20000000\n# .bss          16384      0x20000800\n# Total Flash:  95040 / 1048576 (9.1%)"},
+    {"type": "list", "ordered": false, "items": [
+      "优化方案 1：使用 `-Os` 编译选项（针对空间优化）",
+      "优化方案 2：启用 LTO (Link-Time Optimization)：`-flto`",
+      "优化方案 3：移除未使用的函数和变量",
+      "优化方案 4：将字符串常量移到外部 Flash（如果可用）",
+      "优化方案 5：检查是否有大数组占用 .data 段 — 改为 malloc 动态分配"
+    ]},
+
+    {"type": "heading", "level": 2, "text": "烧录与调试问题"},
+
+    {"type": "heading", "level": 3, "text": "Q6: 烧录失败 'No ST-Link detected'"},
+    {"type": "code", "language": "bash", "code": "# 诊断步骤\ntt-flash --list-devices         # 列出设备\ntt-flash --verbose --probe      # 详细探测\n\n# 如果仍无法识别:\n# 1. 检查 ST-Link 部分的 USB 线是否连接（开发板有两个 USB 口）\n# 2. Windows: 检查 Zadig 驱动程序\n# 3. Linux: 检查 udev 规则\nls -la /etc/udev/rules.d/99-tt.rules\n\n# 4. 尝试更新 ST-Link 固件\ntt-flash --update-firmware"},
+
+    {"type": "heading", "level": 3, "text": "Q7: 程序烧录后不运行 / 立即崩溃"},
+    {"type": "paragraph", "text": "常见原因："},
+    {"type": "list", "ordered": false, "items": [
+      "堆栈溢出：检查启动文件中的栈大小设置（建议最小 4KB）",
+      "HardFault：通常由非对齐访问、非法内存地址或除零引起",
+      "时钟未初始化：确保在 main() 开头调用 board_init() 或 SystemClock_Config()",
+      "看门狗未喂狗：如果启用了独立看门狗（IWDG），需要在主循环中定期喂狗",
+      "中断向量表位置错误：检查 SCB->VTOR 是否指向正确的中断向量表地址"
+    ]},
+    {"type": "heading", "level": 4, "text": "HardFault 调试技巧"},
+    {"type": "code", "language": "c", "code": "/* HardFault 分析器 — 添加到项目中 */\n\nvoid HardFault_Handler(void)\n{\n    uint32_t stacked_pc, stacked_lr, stacked_psr;\n    \n    __asm volatile (\n        \"TST   LR, #4\\n\"\n        \"ITE   EQ\\n\"\n        \"MRSEQ R0, MSP\\n\"\n        \"MRSNE R0, PSP\\n\"\n        \"MOV   %0, R0\\n\"\n        : \"=r\" (stacked_pc)\n    );\n    \n    /* 从栈中读取寄存器的值 */\n    stacked_pc  = ((uint32_t *)stacked_pc)[6];  /* PC — 崩溃位置 */\n    stacked_lr  = ((uint32_t *)stacked_pc)[5];  /* LR */\n    stacked_psr = ((uint32_t *)stacked_pc)[7];  /* xPSR */\n    \n    printf(\"\\n!!! HARDFAULT !!!\\n\");\n    printf(\"  PC:  0x%08lX\\n\", stacked_pc);\n    printf(\"  LR:  0x%08lX\\n\", stacked_lr);\n    printf(\"  PSR: 0x%08lX\\n\", stacked_psr);\n    printf(\"  CFSR: 0x%08lX (Configurable Fault)\\n\", SCB->CFSR);\n    printf(\"  HFSR: 0x%08lX (Hard Fault)\\n\", SCB->HFSR);\n    printf(\"  MMFAR: 0x%08lX (MemManage Fault Addr)\\n\", SCB->MMFAR);\n    printf(\"  BFAR: 0x%08lX (Bus Fault Addr)\\n\", SCB->BFAR);\n    \n    /* 用 addr2line 定位崩溃位置 */\n    printf(\"\\n  Run: arm-none-eabi-addr2line -e build/firmware.elf 0x%08lX\\n\",\n           stacked_pc);\n    \n    while (1); /* 停止执行 */\n}"},
+
+    {"type": "heading", "level": 2, "text": "外设问题"},
+
+    {"type": "heading", "level": 3, "text": "Q8: GPIO 引脚不工作"},
+    {"type": "blockquote", "text": "大部分 GPIO 问题的根源是时钟未使能或复用功能配置错误。"},
+    {"type": "paragraph", "text": "排查清单："},
+    {"type": "list", "ordered": false, "items": [
+      "GPIO 时钟已使能：RCC->AHB1ENR |= RCC_AHB1ENR_GPIOxEN",
+      "引脚模式正确：Input / Output / AF / Analog",
+      "复用功能选择正确：GPIOx->AFR[ pin>>3 ] 设置了正确的 AF 值",
+      "输出类型：Push-Pull vs Open-Drain",
+      "上下拉：No Pull / Pull-Up / Pull-Down",
+      "速度等级：Low / Medium / High / Very High"
+    ]},
+
+    {"type": "heading", "level": 3, "text": "Q9: SPI/I2C 通信异常"},
+    {"type": "table", "headers": ["问题", "原因", "解决方法"],
+      "rows": [
+        ["SPI 无数据", "片选信号未控制", "在传输前后手动控制 CS 引脚"],
+        ["SPI 数据错位", "CPOL/CPHA 配置不匹配", "对照设备数据手册检查 SPI 模式 (0-3)"],
+        ["I2C 总线挂死", "SCL 被从机拉低", "发送 9 个 SCL 脉冲释放总线"],
+        ["I2C 无 ACK", "从机地址错误", "使用逻辑分析仪确认 7-bit 地址左移 1 位"],
+        ["通信不稳定", "线缆过长或干扰", "降低频率，添加上拉电阻 (4.7k typical)"]
+      ]
+    },
+
+    {"type": "heading", "level": 2, "text": "性能问题"},
+
+    {"type": "heading", "level": 3, "text": "Q10: 系统运行缓慢 / 卡顿"},
+    {"type": "paragraph", "text": "诊断工具 — 使用 SysTick 测量函数执行时间："},
+    {"type": "code", "language": "c", "code": "#include \"profile.h\"\n\n/* 简易性能分析宏 */\n#define PROFILE_START()  uint32_t _t0 = DWT->CYCCNT\n#define PROFILE_END(tag) \\\n    do { \\\n        uint32_t _t1 = DWT->CYCCNT; \\\n        uint32_t _elapsed = _t1 - _t0; \\\n        printf(\"[PROFILE] %-20s: %8lu cycles (%6.2f us)\\n\", \\\n               tag, _elapsed, _elapsed / 480.0f); \\\n    } while(0)\n\n/* 使用示例 */\nvoid process_sensor_data(void)\n{\n    PROFILE_START();\n    read_sensor_i2c();\n    PROFILE_END(\"I2C Read\");\n\n    PROFILE_START();\n    apply_kalman_filter();\n    PROFILE_END(\"Kalman Filter\");\n\n    PROFILE_START();\n    send_data_uart();\n    PROFILE_END(\"UART Send\");\n}\n\n/* 输出示例:\n * [PROFILE] I2C Read           :   192000 cycles (400.00 us)\n * [PROFILE] Kalman Filter      :    56400 cycles (117.50 us)\n * [PROFILE] UART Send          :    86000 cycles (179.17 us)\n */"},
+
+    {"type": "callout", "calloutType": "info", "title": "性能优化建议", "text": "关键原则：先测量，后优化。使用性能分析数据确定瓶颈所在，避免过早优化非热点代码。常见的优化方向包括：使用 DMA 代替轮询、将中断处理移到低优先级任务、使用硬件加速模块（CRC、HASH、CRYP 等）。"},
+
+    {"type": "heading", "level": 3, "text": "Q11: 中断响应延迟过高"},
+    {"type": "paragraph", "text": "影响中断延迟的因素及优化建议："},
+    {"type": "list", "ordered": false, "items": [
+      "中断嵌套：高优先级中断被低优先级中断阻塞？— 调整 NVIC 优先级",
+      "临界区过长：减少 __disable_irq() / __enable_irq() 之间的代码",
+      "中断服务函数过长：ISR 中只做最关键操作，其余交给任务/主循环",
+      "Flash 等待状态：将 ISR 放到 SRAM 中运行（零等待状态）"
+    ]},
+    {"type": "code", "language": "c", "code": "/* 将 ISR 放到 SRAM（DTCM）中执行以避免 Flash 等待 */\n__attribute__((section(\".ramfunc\"), long_call))\nvoid TIM2_IRQHandler(void)\n{\n    /* 时间关键的 ISR 代码 */\n    TIM2->SR = ~TIM_SR_UIF;      /* 清除标志 */\n    gpio_toggle(LED_PIN);         /* 翻转 LED */\n}"},
+
+    {"type": "heading", "level": 2, "text": "快速诊断命令集"},
+    {"type": "paragraph", "text": "当不确定问题所在时，运行 SDK 的诊断工具获取全面的系统状态报告："},
+    {"type": "code", "language": "bash", "code": "# 全面诊断\ntt-sdk doctor\n\n# 检查工具链完整性\ntt-sdk doctor --check-toolchain\n\n# 检查 USB 设备连接\ntt-sdk doctor --check-devices\n\n# 检查项目配置有效性\ntt-sdk doctor --check-project\n\n# 生成诊断报告\ntt-sdk doctor --report > diagnosis-report.txt\n\n# 输出示例:\n# ====================================\n# TechTutorial SDK Diagnosis Report\n# ====================================\n# [OK]    SDK Version:     1.0.0\n# [OK]    GCC Version:     10.3.1 (arm-none-eabi)\n# [OK]    OpenOCD:         0.12.0\n# [OK]    ST-Link:         V3 (Serial: 066DFF...) \n# [WARN]  USB Driver:      Update available\n# [OK]    Python:          3.10.0\n# [FAIL]  Make:            Not found in PATH\n# ===================================="},
+
+    {"type": "heading", "level": 2, "text": "获取帮助"},
+    {"type": "paragraph", "text": "如果您的问题未在本文档中列出，请通过以下渠道获取帮助："},
+    {"type": "list", "ordered": false, "items": [
+      "**GitHub Issues** — 搜索或创建 issue：https://github.com/tech-tutorial/project/issues",
+      "**Discord 社区** — 实时讨论和社区支持",
+      "**邮件支持** — 发送邮件至 support@techtutorial.io",
+      "**文档站** — 访问完整的 API 参考文献：https://docs.techtutorial.io"
+    ]},
+
+    {"type": "blockquote", "text": "提示：提问时请附上以下信息以便快速定位问题：SDK 版本 (tt-sdk --version)、操作系统版本、tt-sdk doctor 的输出、以及相关的错误日志或代码片段。"},
+
+    {"type": "heading", "level": 2, "text": "相关教程"},
+    {"type": "paragraph", "text": "建议同时阅读以下相关教程以获得更深入的理解："},
+    {"type": "list", "ordered": false, "items": [
+      "**[[环境安装与配置]](installation)** — 完整的开发环境搭建指南",
+      "**[[第一个项目]](quick-start)** — 从零开始的实战教程",
+      "**[[高级配置指南]](advanced-config)** — 系统优化和进阶配置",
+      "**[[快速入门指南]](getting-started)** — 平台整体介绍和快速导航"
+    ]}
+  ]
+}

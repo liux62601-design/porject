@@ -1,0 +1,57 @@
+[
+  {
+    "id": "getting-started",
+    "title": "快速入门指南",
+    "description": "了解 TechTutorial Pro 平台的基础知识和快速上手方法。",
+    "category": "入门",
+    "tags": ["入门", "基础", "概览"],
+    "date": "2026-06-22",
+    "author": "TechTutorial Team",
+    "readingTime": 5,
+    "difficulty": "beginner"
+  },
+  {
+    "id": "installation",
+    "title": "环境安装与配置",
+    "description": "详细的环境搭建指南，包括 SDK 安装、驱动配置和开发工具链设置。",
+    "category": "入门",
+    "tags": ["安装", "配置", "SDK", "工具链"],
+    "date": "2026-06-20",
+    "author": "TechTutorial Team",
+    "readingTime": 10,
+    "difficulty": "beginner"
+  },
+  {
+    "id": "quick-start",
+    "title": "第一个项目",
+    "description": "创建您的第一个项目，从零开始编写、编译和运行代码。",
+    "category": "开发",
+    "tags": ["项目", "编译", "运行", "示例"],
+    "date": "2026-06-18",
+    "author": "TechTutorial Team",
+    "readingTime": 8,
+    "difficulty": "beginner"
+  },
+  {
+    "id": "advanced-config",
+    "title": "高级配置指南",
+    "description": "深入了解系统配置选项，优化性能和功耗。",
+    "category": "进阶",
+    "tags": ["配置", "优化", "性能", "高级"],
+    "date": "2026-06-15",
+    "author": "TechTutorial Team",
+    "readingTime": 15,
+    "difficulty": "advanced"
+  },
+  {
+    "id": "troubleshooting",
+    "title": "常见问题排查",
+    "description": "常见开发问题的诊断和解决方法汇总。",
+    "category": "支持",
+    "tags": ["调试", "错误", "故障排除", "FAQ"],
+    "date": "2026-06-10",
+    "author": "TechTutorial Team",
+    "readingTime": 12,
+    "difficulty": "intermediate"
+  }
+]

@@ -1,0 +1,71 @@
+{
+  "id": "quick-start",
+  "title": "第一个项目",
+  "description": "创建您的第一个项目，从零开始编写、编译和运行代码。",
+  "category": "开发",
+  "tags": ["项目", "编译", "运行", "示例"],
+  "date": "2026-06-18",
+  "author": "TechTutorial Team",
+  "readingTime": 8,
+  "difficulty": "beginner",
+  "content": [
+    {"type": "heading", "level": 2, "text": "引言"},
+    {"type": "paragraph", "text": "本教程将手把手带您创建第一个 TechTutorial 项目——一个带按钮控制的 LED 呼吸灯。通过这个项目，您将学会 GPIO 输入/输出、定时器和 PWM 的基本用法。"},
+    {"type": "callout", "calloutType": "info", "title": "前置条件", "text": "在开始之前，请确保已经完成 **[[环境安装与配置]](installation)** 教程，并且能够成功运行 `tt-sdk --version`。"},
+
+    {"type": "heading", "level": 2, "text": "项目需求分析"},
+    {"type": "paragraph", "text": "我们的项目要实现以下功能："},
+    {"type": "list", "ordered": false, "items": [
+      "板载 LED（GPIO_PIN_13）实现 PWM 呼吸灯效果",
+      "用户按钮（GPIO_PIN_0）切换呼吸灯速度（慢/中/快三档）",
+      "串口输出当前状态信息",
+      "使用 SysTick 定时器实现非阻塞延时"
+    ]},
+
+    {"type": "heading", "level": 2, "text": "硬件连接说明"},
+    {"type": "table", "headers": ["组件", "引脚", "功能", "模式"],
+      "rows": [
+        ["LED (蓝色)", "GPIO_PIN_13 (PB13)", "PWM 输出", "AF Push-Pull"],
+        ["User Button", "GPIO_PIN_0 (PA0)", "按键输入", "Input Pull-up"],
+        ["UART TX", "GPIO_PIN_9 (PA9)", "调试输出", "AF Push-Pull"],
+        ["UART RX", "GPIO_PIN_10 (PA10)", "调试输入", "Input Floating"]
+      ]
+    },
+
+    {"type": "heading", "level": 2, "text": "创建项目"},
+    {"type": "paragraph", "text": "使用 SDK 命令行工具创建项目，这次我们选择空白模板以从零开始："},
+    {"type": "code", "language": "bash", "code": "# 创建空白项目\ntt-sdk new breathing-led --template blank\n\n# 进入项目目录\ncd breathing-led\n\n# 查看生成的文件\nls -la"},
+
+    {"type": "heading", "level": 2, "text": "编写代码"},
+    {"type": "heading", "level": 3, "text": "main.c — 主程序"},
+    {"type": "paragraph", "text": "打开 `src/main.c`，用以下代码替换默认内容："},
+    {"type": "code", "language": "c", "code": "/**\n * breathing-led - LED 呼吸灯示例\n * \n * 功能：\n *   - PWM 控制的 LED 呼吸效果\n *   - 按键切换呼吸速度（3档）\n *   - 串口实时输出状态\n */\n\n#include <stdio.h>\n#include \"board.h\"\n#include \"gpio.h\"\n#include \"timer.h\"\n#include \"uart.h\"\n\n/* ---- 常量定义 ---- */\n#define LED_PIN         GPIO_PIN_13    /* 蓝色 LED */\n#define BTN_PIN         GPIO_PIN_0     /* 用户按键 */\n#define PWM_PERIOD      1000           /* PWM 周期 (us) */\n#define BREATH_STEPS    100            /* 呼吸步数 */\n\n/* 呼吸速度档位（ms/step） */\ntypedef enum {\n    SPEED_SLOW   = 30,   /* 慢速 ~3s/周期 */\n    SPEED_MEDIUM = 15,   /* 中速 ~1.5s/周期 */\n    SPEED_FAST   = 5     /* 快速 ~0.5s/周期 */\n} breath_speed_t;\n\n/* ---- 全局状态 ---- */\nstatic breath_speed_t g_speed = SPEED_MEDIUM;\nstatic uint32_t       g_step  = 0;\nstatic uint8_t        g_dir   = 1;    /* 1=变亮, 0=变暗 */\nstatic uint32_t       g_last_tick = 0;\n\n/* ---- 函数声明 ---- */\nvoid system_init(void);\nvoid breath_update(void);\nvoid button_check(void);\nvoid uart_print_status(void);\n\n/* ---- 入口函数 ---- */\nint main(void)\n{\n    system_init();\n    printf(\"\\n=== Breathing LED Demo ===\\n\");\n    printf(\"Press the USER button to change speed.\\n\\n\");\n    \n    while (1) {\n        breath_update();\n        button_check();\n    }\n    \n    return 0;\n}\n\n/* ---- 系统初始化 ---- */\nvoid system_init(void)\n{\n    board_init();\n    uart_init(USART1, 115200);\n    \n    /* 配置 LED 为 PWM 输出 */\n    gpio_init(LED_PIN, GPIO_MODE_AF_PP);\n    timer_pwm_init(TIM2, 1, PWM_PERIOD);\n    \n    /* 配置按键为输入（内部上拉） */\n    gpio_init(BTN_PIN, GPIO_MODE_INPUT_PU);\n    \n    /* 配置 1ms SysTick */\n    timer_init(TIM6, 1000);\n    \n    g_last_tick = timer_get_ms();\n    printf(\"[INIT] System initialized OK\\n\");\n}\n\n/* ---- 呼吸灯更新 ---- */\nvoid breath_update(void)\n{\n    uint32_t now = timer_get_ms();\n    \n    if (now - g_last_tick < (uint32_t)g_speed) {\n        return;\n    }\n    g_last_tick = now;\n    \n    /* 计算当前占空比（正弦近似） */\n    if (g_dir) {\n        g_step++;\n        if (g_step >= BREATH_STEPS) {\n            g_step = BREATH_STEPS;\n            g_dir = 0;\n        }\n    } else {\n        g_step--;\n        if (g_step == 0) {\n            g_dir = 1;\n        }\n    }\n    \n    /* 将步数映射到 PWM 占空比 (0-100%) */\n    uint32_t duty = (g_step * PWM_PERIOD) / BREATH_STEPS;\n    timer_pwm_set_duty(TIM2, 1, duty);\n}\n\n/* ---- 按键检测（简单去抖动） ---- */\nvoid button_check(void)\n{\n    static uint32_t last_press = 0;\n    uint32_t now = timer_get_ms();\n    \n    /* 50ms 去抖动 */\n    if (now - last_press < 50) {\n        return;\n    }\n    \n    if (gpio_read(BTN_PIN) == GPIO_LOW) {\n        last_press = now;\n        \n        /* 循环切换速度 */\n        switch (g_speed) {\n            case SPEED_SLOW:   g_speed = SPEED_MEDIUM; break;\n            case SPEED_MEDIUM: g_speed = SPEED_FAST;   break;\n            case SPEED_FAST:   g_speed = SPEED_SLOW;   break;\n        }\n        \n        uart_print_status();\n    }\n}\n\n/* ---- 串口状态输出 ---- */\nvoid uart_print_status(void)\n{\n    const char *speed_str = \"Unknown\";\n    switch (g_speed) {\n        case SPEED_SLOW:   speed_str = \"Slow\";   break;\n        case SPEED_MEDIUM: speed_str = \"Medium\";  break;\n        case SPEED_FAST:   speed_str = \"Fast\";    break;\n    }\n    printf(\"[BTN] Speed changed to: %s\\n\", speed_str);\n}"},
+
+    {"type": "heading", "level": 3, "text": "Makefile 配置"},
+    {"type": "paragraph", "text": "确保 `Makefile` 中包含正确的芯片型号和编译选项："},
+    {"type": "code", "language": "makefile", "code": "# Makefile - Breathing LED Project\nMCU       = STM32F767II\nCPU       = cortex-m7\nFPU       = fpv5-sp-d16\nFLOAT_ABI = hard\n\nCC        = arm-none-eabi-gcc\nCFLAGS    = -mcpu=$(CPU) -mthumb -mfpu=$(FPU) -mfloat-abi=$(FLOAT_ABI) -O2 -g -Wall\nLDFLAGS   = -T $(LDSCRIPT) -Wl,-Map=$(BUILD)/firmware.map\n\nSRC_DIR   = src\nBUILD     = build\nTARGET    = $(BUILD)/firmware\n\nSRCS      = $(wildcard $(SRC_DIR)/*.c)\nOBJS      = $(SRCS:$(SRC_DIR)/%.c=$(BUILD)/%.o)\n\n.PHONY: all clean flash\n\nall: $(TARGET).elf $(TARGET).bin\n\n$(TARGET).elf: $(OBJS)\n\t@echo \"[LD] $@\"\n\t@$(CC) $(CFLAGS) $(LDFLAGS) $^ -o $@\n\n$(BUILD)/%.o: $(SRC_DIR)/%.c\n\t@echo \"[CC] $<\"\n\t@$(CC) $(CFLAGS) -c $< -o $@\n\n$(TARGET).bin: $(TARGET).elf\n\t@echo \"[BIN] $@\"\n\t@arm-none-eabi-objcopy -O binary $< $@\n\t@echo \"[SIZE]\"\n\t@arm-none-eabi-size $<\n\nflash: $(TARGET).bin\n\t@echo \"[FLASH] Programming...\"\n\ttt-flash write $(TARGET).bin 0x08000000\n\nclean:\n\t@rm -rf $(BUILD)/*"},
+
+    {"type": "heading", "level": 2, "text": "编译与烧录"},
+    {"type": "paragraph", "text": "连接好开发板后，执行以下命令："},
+    {"type": "code", "language": "bash", "code": "# 清理并编译\ntt-sdk clean && tt-sdk build\n\n# 烧录到开发板\ntt-sdk flash\n\n# 打开串口监视器（115200 波特率）\ntt-sdk monitor --baud 115200"},
+
+    {"type": "paragraph", "text": "如果一切顺利，您将看到 LED 以呼吸效果闪烁，串口输出类似以下内容："},
+    {"type": "code", "language": "text", "code": "=== Breathing LED Demo ===\nPress the USER button to change speed.\n\n[INIT] System initialized OK\n[BTN] Speed changed to: Fast\n[BTN] Speed changed to: Slow\n[BTN] Speed changed to: Medium"},
+
+    {"type": "heading", "level": 2, "text": "深入理解"},
+    {"type": "heading", "level": 3, "text": "PWM 原理"},
+    {"type": "paragraph", "text": "PWM (Pulse Width Modulation) 通过改变一个周期内高电平的占比来模拟不同的电压值。在我们的代码中，`PWM_PERIOD` 定义了周期（1000us=1kHz），`duty` 定义了高电平持续时间。LED 的亮度与占空比成正比。"},
+    {"type": "image", "src": "../assets/img/hardware/hardware-2.svg", "alt": "PWM 波形示意图", "caption": "图1：不同占空比的 PWM 波形"},
+
+    {"type": "heading", "level": 3, "text": "按键去抖"},
+    {"type": "paragraph", "text": "机械按键在按下和释放时会产生抖动（bounce），导致单次按下被误判为多次。我们的代码使用 50ms 延时实现简单的软件去抖。"},
+    {"type": "callout", "calloutType": "tip", "title": "进阶技巧", "text": "在实际产品中，建议使用硬件去抖（RC 滤波 + 施密特触发器）结合软件去抖，以获得最佳可靠性。可以使用 GPIO 的外部中断来替代轮询，降低 CPU 占用。"},
+
+    {"type": "heading", "level": 2, "text": "实验：修改呼吸曲线"},
+    {"type": "paragraph", "text": "当前代码使用线性占空比变化，呼吸效果不够自然。我们可以改用正弦函数来改善视觉效果："},
+    {"type": "code", "language": "c", "code": "/* 使用正弦函数的呼吸效果（更自然） */\n#include <math.h>\n\nvoid breath_update_sine(void)\n{\n    uint32_t now = timer_get_ms();\n    uint32_t elapsed = now - g_start_time;\n    \n    /* sin(0) 到 sin(pi)，范围 [0, 1] */\n    float phase = (float)(elapsed % g_period) / (float)g_period;\n    float brightness = sinf(phase * 3.14159265f);\n    \n    uint32_t duty = (uint32_t)(brightness * PWM_PERIOD);\n    timer_pwm_set_duty(TIM2, 1, duty);\n}"},
+
+    {"type": "heading", "level": 2, "text": "下一步"},
+    {"type": "paragraph", "text": "恭喜您完成了第一个项目！建议继续学习 **[[高级配置指南]](advanced-config)** 了解如何优化系统性能和功耗，或查看 **[[常见问题排查]](troubleshooting)** 解决开发中遇到的问题。"}
+  ]
+}

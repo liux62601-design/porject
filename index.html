@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="TechTutorial Pro — 企业级技术教程平台。提供专业的技术教程、软件下载、固件更新和开发者资源。支持暗黑模式、离线访问、响应式设计。">
+  <meta name="keywords" content="技术教程,软件开发,固件下载,编程教程,开发者资源,TechTutorial">
+  <meta name="author" content="TechTutorial Pro">
+  <meta name="theme-color" content="#000000">
+  <meta name="color-scheme" content="dark light">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="TechTutorial Pro — 企业级技术教程平台">
+  <meta property="og:description" content="专业的技术教程、软件下载、固件更新和开发者资源。支持暗黑模式、离线访问。">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://tech-tutorial-pro.github.io/project/">
+  <meta property="og:image" content="assets/img/showcase/showcase-1.svg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:locale" content="zh_CN">
+  <meta property="og:site_name" content="TechTutorial Pro">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="TechTutorial Pro — 企业级技术教程平台">
+  <meta name="twitter:description" content="专业的技术教程、软件下载、固件更新和开发者资源。支持暗黑模式、离线访问。">
+  <meta name="twitter:image" content="assets/img/showcase/showcase-1.svg">
+
+  <!-- Canonical -->
+  <link rel="canonical" href="https://tech-tutorial-pro.github.io/project/">
+
+  <!-- PWA -->
+  <link rel="manifest" href="manifest.json">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="TechTutorial Pro">
+  <link rel="apple-touch-icon" href="assets/icons/icon-192.svg">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="assets/img/logo.svg">
+  <link rel="alternate icon" href="favicon.ico">
+
+  <!-- Fonts: Inter + JetBrains Mono (self-hosted via Google Fonts with swap) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" media="print" onload="this.media='all'">
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap"></noscript>
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="assets/css/main.css">
+  <link rel="stylesheet" href="assets/css/components.css">
+  <link rel="stylesheet" href="assets/css/animations.css">
+  <link rel="stylesheet" href="assets/css/responsive.css">
+
+  <!-- Preload critical assets -->
+  <link rel="preload" as="image" href="assets/img/hero-bg.svg">
+
+  <!-- CSP -->
+  <meta http-equiv="Content-Security-Policy" content="
+    default-src 'self';
+    style-src 'self' 'unsafe-inline' https://fonts.googleapis.com;
+    font-src 'self' https://fonts.gstatic.com;
+    img-src 'self' data: blob:;
+    script-src 'self';
+    connect-src 'self' https://formspree.io;
+    media-src 'self';
+    frame-src https://www.youtube.com https://player.bilibili.com;
+  ">
+
+  <title>TechTutorial Pro — 企业级技术教程平台</title>
+
+  <!-- Schema.org Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "TechTutorial Pro",
+    "url": "https://tech-tutorial-pro.github.io/project/",
+    "description": "企业级技术教程平台 — 提供专业的技术教程、软件下载、固件更新和开发者资源。",
+    "publisher": {
+      "@type": "Organization",
+      "name": "TechTutorial Pro"
+    },
+    "potentialAction": {
+      "@type": "SearchAction",
+      "target": "tutorials/index.html#/search?q={search_term_string}",
+      "query-input": "required name=search_term_string"
+    }
+  }
+  </script>
+</head>
+<body>
+
+  <!-- ====== Navigation ====== -->
+  <header class="nav" id="nav" role="banner">
+    <div class="nav-inner">
+      <a href="#hero" class="nav-logo" aria-label="TechTutorial Pro 首页">
+        <img src="assets/img/logo.svg" alt="TechTutorial Pro Logo" width="32" height="32">
+        <span>TechTutorial</span>
+      </a>
+
+      <nav class="nav-links" role="navigation" aria-label="主导航">
+        <a href="#features" data-nav="features">特性</a>
+        <a href="#showcase" data-nav="showcase">展示</a>
+        <a href="#hardware" data-nav="hardware">硬件</a>
+        <a href="#software" data-nav="software">软件</a>
+        <a href="tutorials/index.html">教程</a>
+        <a href="downloads/index.html">下载</a>
+        <a href="#faq" data-nav="faq">FAQ</a>
+        <a href="#contact" data-nav="contact">联系我们</a>
+      </nav>
+
+      <div class="nav-actions">
+        <button class="theme-toggle" id="theme-toggle" aria-label="切换暗黑/明亮模式">
+          <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
+          <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1111.21 3a7 7 0 009.79 9.79z"/></svg>
+        </button>
+        <button class="mobile-menu-btn" id="mobile-menu-btn" aria-label="打开菜单" aria-expanded="false">
+          <svg class="icon-menu" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Menu -->
+  <div class="mobile-menu" id="mobile-menu" role="dialog" aria-label="移动端菜单" aria-hidden="true">
+    <a href="#hero">首页</a>
+    <a href="#features">特性</a>
+    <a href="#showcase">展示</a>
+    <a href="#hardware">硬件</a>
+    <a href="#software">软件</a>
+    <a href="tutorials/index.html">教程</a>
+    <a href="downloads/index.html">下载</a>
+    <a href="#faq">FAQ</a>
+    <a href="#contact">联系我们</a>
+  </div>
+
+  <!-- ====== Main Content ====== -->
+  <main id="main-content">
+
+    <!-- ====== Hero Section ====== -->
+    <section class="hero" id="hero" aria-label="首页横幅">
+      <div class="hero-particles" aria-hidden="true">
+        <div class="hero-blob"></div>
+        <div class="hero-blob"></div>
+        <div class="hero-blob"></div>
+      </div>
+      <div class="hero-content">
+        <div class="hero-badge reveal-up">
+          <span class="dot" aria-hidden="true"></span>
+          全新 v1.0.0 版本已发布
+        </div>
+        <h1 class="reveal-up">
+          下一代 <span class="text-gradient animate-gradient">技术教程</span><br>平台
+        </h1>
+        <p class="reveal-up">
+          从入门到精通，覆盖硬件开发、软件编程、固件设计的全方位技术教程。
+          支持离线访问、暗黑模式，为开发者打造极致学习体验。
+        </p>
+        <div class="hero-actions reveal-up">
+          <a href="tutorials/index.html" class="btn btn-primary btn-lg">
+            开始学习
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+          <a href="downloads/index.html" class="btn btn-glass btn-lg">
+            下载中心
+          </a>
+        </div>
+      </div>
+      <button class="hero-scroll" aria-label="向下滚动" onclick="document.getElementById('features').scrollIntoView({behavior:'smooth'})">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 13l5 5 5-5M7 6l5 5 5-5"/></svg>
+      </button>
+    </section>
+
+    <!-- ====== Features Section ====== -->
+    <section class="section" id="features" aria-labelledby="features-title">
+      <div class="container">
+        <div class="section-header reveal-up">
+          <span class="section-label">核心特性</span>
+          <h2 id="features-title">为什么选择 TechTutorial Pro</h2>
+          <p class="subtitle">我们提供企业级的教程体验，助您快速掌握前沿技术</p>
+        </div>
+        <div class="features-grid stagger-children">
+          <article class="card feature-card reveal-up">
+            <div class="card-icon">
+              <img src="assets/img/features/feature-1.svg" alt="" width="28" height="28" aria-hidden="true">
+            </div>
+            <h3>极速响应</h3>
+            <p>纯静态架构，毫秒级加载速度。Lighthouse 得分 95+，为您的每一秒学习时间负责。</p>
+          </article>
+          <article class="card feature-card reveal-up">
+            <div class="card-icon">
+              <img src="assets/img/features/feature-2.svg" alt="" width="28" height="28" aria-hidden="true">
+            </div>
+            <h3>安全可靠</h3>
+            <p>CSP 兼容，零内联脚本污染，XSS 防护。GitHub Pages HTTPS 加密传输，保障数据安全。</p>
+          </article>
+          <article class="card feature-card reveal-up">
+            <div class="card-icon">
+              <img src="assets/img/features/feature-3.svg" alt="" width="28" height="28" aria-hidden="true">
+            </div>
+            <h3>代码高亮</h3>
+            <p>内置语法高亮引擎，支持多种编程语言。一键复制代码块，提升开发效率。</p>
+          </article>
+          <article class="card feature-card reveal-up">
+            <div class="card-icon">
+              <img src="assets/img/features/feature-4.svg" alt="" width="28" height="28" aria-hidden="true">
+            </div>
+            <h3>一键部署</h3>
+            <p>GitHub Actions 自动构建部署。Push 即上线，零配置，永久免费。</p>
+          </article>
+          <article class="card feature-card reveal-up">
+            <div class="card-icon">
+              <img src="assets/img/features/feature-5.svg" alt="" width="28" height="28" aria-hidden="true">
+            </div>
+            <h3>全端适配</h3>
+            <p>响应式设计，完美适配手机、平板、电脑。暗黑模式自动切换，保护您的视力。</p>
+          </article>
+          <article class="card feature-card reveal-up">
+            <div class="card-icon">
+              <img src="assets/img/features/feature-6.svg" alt="" width="28" height="28" aria-hidden="true">
+            </div>
+            <h3>离线可用</h3>
+            <p>PWA 技术支持，可添加到桌面。Service Worker 缓存策略，离线也能访问教程。</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ====== Showcase Section ====== -->
+    <section class="section" id="showcase" aria-labelledby="showcase-title" style="background: var(--bg-secondary);">
+      <div class="container">
+        <div class="section-header reveal-up">
+          <span class="section-label">项目展示</span>
+          <h2 id="showcase-title">精美的界面设计</h2>
+          <p class="subtitle">科技感十足的设计语言，每一处细节都经过精心打磨</p>
+        </div>
+        <div class="showcase-grid stagger-children">
+          <div class="showcase-item reveal-scale" data-lightbox data-full="assets/img/showcase/showcase-1.svg">
+            <img src="assets/img/showcase/showcase-1.svg" alt="管理后台仪表盘界面展示" loading="lazy">
+          </div>
+          <div class="showcase-item reveal-scale" data-lightbox data-full="assets/img/showcase/showcase-2.svg">
+            <img src="assets/img/showcase/showcase-2.svg" alt="移动端应用界面展示" loading="lazy">
+          </div>
+          <div class="showcase-item reveal-scale" data-lightbox data-full="assets/img/showcase/showcase-3.svg">
+            <img src="assets/img/showcase/showcase-3.svg" alt="代码编辑器界面展示" loading="lazy">
+          </div>
+        </div>
+      </div>
+      <!-- Lightbox -->
+      <div class="lightbox" id="lightbox" role="dialog" aria-label="图片查看器" aria-hidden="true">
+        <button class="lightbox-close" aria-label="关闭"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
+        <button class="lightbox-prev" aria-label="上一张"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg></button>
+        <button class="lightbox-next" aria-label="下一张"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg></button>
+        <div class="lightbox-content">
+          <img src="" alt="" id="lightbox-img">
+        </div>
+      </div>
+    </section>
+
+    <!-- ====== Hardware Section ====== -->
+    <section class="section" id="hardware" aria-labelledby="hardware-title">
+      <div class="container">
+        <div class="split-section">
+          <div class="split-image reveal-left">
+            <img src="assets/img/hardware/hardware-1.svg" alt="高性能开发板硬件展示" loading="lazy">
+          </div>
+          <div class="split-content reveal-right">
+            <span class="section-label">硬件平台</span>
+            <h2 id="hardware-title">高性能开发板</h2>
+            <p>专为 IoT 和嵌入式开发设计的硬件平台，搭载最新 ARM Cortex-M7 处理器，主频高达 480MHz。丰富的外设接口，让您的创意不受限制。</p>
+            <div class="specs">
+              <div class="spec-item"><span class="spec-label">处理器</span><span class="spec-value">ARM Cortex-M7 @ 480MHz</span></div>
+              <div class="spec-item"><span class="spec-label">内存</span><span class="spec-value">1MB SRAM / 16MB Flash</span></div>
+              <div class="spec-item"><span class="spec-label">连接</span><span class="spec-value">Wi-Fi 6 / BLE 5.3 / Ethernet</span></div>
+              <div class="spec-item"><span class="spec-label">接口</span><span class="spec-value">USB-C / GPIO x40 / SPI / I²C / UART</span></div>
+            </div>
+            <a href="tutorials/index.html#/getting-started" class="btn btn-primary" style="margin-top: 1.5rem;">查看硬件教程 →</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ====== Software Section ====== -->
+    <section class="section" id="software" aria-labelledby="software-title" style="background: var(--bg-secondary);">
+      <div class="container">
+        <div class="split-section reverse">
+          <div class="split-image reveal-right">
+            <img src="assets/img/hardware/hardware-2.svg" alt="软件开发工具套件展示" loading="lazy">
+          </div>
+          <div class="split-content reveal-left">
+            <span class="section-label">软件生态</span>
+            <h2 id="software-title">全栈开发工具链</h2>
+            <p>从固件 SDK 到云端管理平台，我们提供完整的软件开发工具链。支持 C/C++、Python、JavaScript 等多种语言，一键编译、烧录、调试。</p>
+            <div class="stat-bars">
+              <div class="stat-bar-item">
+                <div class="stat-bar-label"><span>编译速度</span><span data-count="95">95%</span></div>
+                <div class="stat-bar-track"><div class="stat-bar-fill" data-width="95"></div></div>
+              </div>
+              <div class="stat-bar-item">
+                <div class="stat-bar-label"><span>代码覆盖率</span><span data-count="88">88%</span></div>
+                <div class="stat-bar-track"><div class="stat-bar-fill" data-width="88"></div></div>
+              </div>
+              <div class="stat-bar-item">
+                <div class="stat-bar-label"><span>SDK 包大小</span><span data-count="72">72%</span></div>
+                <div class="stat-bar-track"><div class="stat-bar-fill" data-width="72"></div></div>
+              </div>
+              <div class="stat-bar-item">
+                <div class="stat-bar-label"><span>跨平台兼容</span><span data-count="100">100%</span></div>
+                <div class="stat-bar-track"><div class="stat-bar-fill" data-width="100"></div></div>
+              </div>
+            </div>
+            <a href="downloads/index.html" class="btn btn-primary" style="margin-top: 1.5rem;">下载 SDK →</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ====== FAQ Section ====== -->
+    <section class="section" id="faq" aria-labelledby="faq-title">
+      <div class="container">
+        <div class="section-header reveal-up">
+          <span class="section-label">常见问题</span>
+          <h2 id="faq-title">FAQ</h2>
+          <p class="subtitle">快速找到您想要的答案</p>
+        </div>
+        <div class="faq-search reveal-up">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+          <input type="search" id="faq-search-input" placeholder="搜索常见问题..." aria-label="搜索FAQ">
+        </div>
+        <div class="faq-list" id="faq-list">
+          <div class="faq-item reveal-up">
+            <button class="faq-question" aria-expanded="false">
+              <span>TechTutorial Pro 支持哪些平台？</span>
+              <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+            </button>
+            <div class="faq-answer"><div class="faq-answer-inner">
+              <p>TechTutorial Pro 是一个纯静态网站，支持所有现代浏览器，包括 Chrome、Edge、Safari、Firefox。同时完美适配 Windows、macOS、Linux、iOS 和 Android 系统。得益于 PWA 技术，您甚至可以将网站添加到手机桌面，获得接近原生应用的体验。</p>
+            </div></div>
+          </div>
+          <div class="faq-item reveal-up">
+            <button class="faq-question" aria-expanded="false">
+              <span>如何开始学习教程？</span>
+              <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+            </button>
+            <div class="faq-answer"><div class="faq-answer-inner">
+              <p>访问我们的<a href="tutorials/index.html">教程中心</a>，选择您感兴趣的分类开始学习。教程支持 Markdown 格式，包含代码高亮、复制按钮、步骤导航和目录导航。支持图片、GIF 和视频嵌入，提供最佳的学习体验。</p>
+            </div></div>
+          </div>
+          <div class="faq-item reveal-up">
+            <button class="faq-question" aria-expanded="false">
+              <span>网站是否需要付费？</span>
+              <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+            </button>
+            <div class="faq-answer"><div class="faq-answer-inner">
+              <p><strong>完全免费！</strong>TechTutorial Pro 基于 GitHub Pages 部署，永久免费，无广告。所有教程、软件下载、固件更新和源代码均免费提供。我们致力于为全球开发者提供高质量的技术教育资源。</p>
+            </div></div>
+          </div>
+          <div class="faq-item reveal-up">
+            <button class="faq-question" aria-expanded="false">
+              <span>支持离线使用吗？</span>
+              <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+            </button>
+            <div class="faq-answer"><div class="faq-answer-inner">
+              <p>支持！TechTutorial Pro 使用 Service Worker 技术实现了离线缓存。首次访问后，核心内容和已浏览的教程页面将自动缓存到本地。即使没有网络连接，您也可以正常浏览已缓存的教程内容。您还可以通过 PWA 功能将网站安装到桌面。</p>
+            </div></div>
+          </div>
+          <div class="faq-item reveal-up">
+            <button class="faq-question" aria-expanded="false">
+              <span>如何贡献教程内容？</span>
+              <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+            </button>
+            <div class="faq-answer"><div class="faq-answer-inner">
+              <p>我们欢迎社区贡献！请查看我们的<a href="CONTRIBUTING.md">贡献指南</a>了解详情。您可以通过 GitHub Fork 本项目，添加或修改教程内容后提交 Pull Request。教程内容位于 <code>tutorials/data/</code> 目录下的 JSON 文件中。</p>
+            </div></div>
+          </div>
+          <div class="faq-item reveal-up">
+            <button class="faq-question" aria-expanded="false">
+              <span>如何部署自己的 TechTutorial 网站？</span>
+              <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+            </button>
+            <div class="faq-answer"><div class="faq-answer-inner">
+              <p>非常简单！只需 Fork 本项目到您的 GitHub 账号，GitHub Actions 将自动部署到 GitHub Pages。无需任何额外配置。您只需修改 <code>tutorials/data/</code> 中的教程内容、替换 <code>assets/img/</code> 中的图片，然后 Push 到 main 分支即可自动更新网站。</p>
+            </div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ====== Changelog Section ====== -->
+    <section class="section" id="changelog" aria-labelledby="changelog-title" style="background: var(--bg-secondary);">
+      <div class="container">
+        <div class="section-header reveal-up">
+          <span class="section-label">更新日志</span>
+          <h2 id="changelog-title">版本历史</h2>
+          <p class="subtitle">持续迭代，追求卓越</p>
+        </div>
+        <div class="timeline">
+          <div class="timeline-item reveal-left">
+            <div class="timeline-version">v1.0.0</div>
+            <div class="timeline-date">2026-06-22</div>
+            <ul class="timeline-changes">
+              <li>🎉 首个正式版本发布</li>
+              <li>完整的教程中心，支持 Markdown、代码高亮、搜索</li>
+              <li>下载中心，支持软件/固件/PDF/源代码分类</li>
+              <li>暗黑模式 / 明亮模式切换</li>
+              <li>PWA 支持，可离线访问</li>
+              <li>响应式布局，全端适配</li>
+              <li>GitHub Actions 自动部署</li>
+              <li>SEO 优化，Lighthouse 95+</li>
+            </ul>
+          </div>
+          <div class="timeline-item reveal-left">
+            <div class="timeline-version">v0.9.0-beta</div>
+            <div class="timeline-date">2026-06-10</div>
+            <ul class="timeline-changes">
+              <li>内测版本，核心功能开发完成</li>
+              <li>教程渲染引擎开发</li>
+              <li>下载中心基础功能</li>
+              <li>暗黑模式实现</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ====== Contact Section ====== -->
+    <section class="section" id="contact" aria-labelledby="contact-title">
+      <div class="container">
+        <div class="section-header reveal-up">
+          <span class="section-label">联系我们</span>
+          <h2 id="contact-title">获取帮助</h2>
+          <p class="subtitle">有任何问题或建议？我们很乐意听取您的意见</p>
+        </div>
+        <form class="contact-form reveal-up" id="contact-form" novalidate>
+          <div class="form-group">
+            <label for="contact-name">姓名</label>
+            <input type="text" id="contact-name" name="name" placeholder="请输入您的姓名" required minlength="2" autocomplete="name">
+            <span class="error-msg">请输入至少 2 个字符的姓名</span>
+          </div>
+          <div class="form-group">
+            <label for="contact-email">邮箱</label>
+            <input type="email" id="contact-email" name="email" placeholder="you@example.com" required autocomplete="email">
+            <span class="error-msg">请输入有效的邮箱地址</span>
+          </div>
+          <div class="form-group">
+            <label for="contact-subject">主题</label>
+            <input type="text" id="contact-subject" name="subject" placeholder="请输入主题" required>
+            <span class="error-msg">请输入主题</span>
+          </div>
+          <div class="form-group">
+            <label for="contact-message">消息</label>
+            <textarea id="contact-message" name="message" placeholder="请详细描述您的问题或建议..." required minlength="10"></textarea>
+            <span class="error-msg">请输入至少 10 个字符的消息</span>
+          </div>
+          <button type="submit" class="btn btn-primary btn-lg" style="width: 100%;">
+            <span class="btn-text">发送消息</span>
+            <span class="btn-loading hidden">
+              <span class="spinner" style="width:18px;height:18px;border-width:2px;"></span>
+              发送中...
+            </span>
+          </button>
+        </form>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ====== Footer ====== -->
+  <footer class="footer" role="contentinfo">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="#hero" class="nav-logo" style="margin-bottom: 1rem;">
+            <img src="assets/img/logo.svg" alt="Logo" width="32" height="32">
+            <span>TechTutorial Pro</span>
+          </a>
+          <p>企业级技术教程平台。从入门到精通，为全球开发者提供高质量的技术教育资源。</p>
+          <div class="footer-social" style="margin-top: 1.5rem;">
+            <a href="https://github.com" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+            </a>
+            <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" aria-label="Twitter">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+            </a>
+            <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" aria-label="YouTube">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+            </a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h4>快速链接</h4>
+          <ul>
+            <li><a href="tutorials/index.html">教程中心</a></li>
+            <li><a href="downloads/index.html">下载中心</a></li>
+            <li><a href="#faq">常见问题</a></li>
+            <li><a href="#changelog">更新日志</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>资源</h4>
+          <ul>
+            <li><a href="tutorials/index.html#/getting-started">入门指南</a></li>
+            <li><a href="tutorials/index.html#/installation">安装指南</a></li>
+            <li><a href="tutorials/index.html#/troubleshooting">故障排除</a></li>
+            <li><a href="CONTRIBUTING.md">贡献指南</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>关于</h4>
+          <ul>
+            <li><a href="#contact">联系我们</a></li>
+            <li><a href="LICENSE">许可证</a></li>
+            <li><a href="SECURITY.md">安全政策</a></li>
+            <li><a href="CHANGELOG.md">变更日志</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div class="footer-copyright">
+          &copy; <span id="current-year">2026</span> TechTutorial Pro. All rights reserved. MIT License.
+        </div>
+        <div class="footer-qr">
+          <canvas id="qrcode-canvas" width="80" height="80" aria-label="扫码访问本站"></canvas>
+          <span class="footer-qr-text">扫码访问<br>当前页面</span>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Back to Top -->
+  <button class="back-to-top" id="back-to-top" aria-label="返回顶部">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 15l-6-6-6 6"/></svg>
+  </button>
+
+  <!-- Toast Container -->
+  <div class="toast-container" id="toast-container" aria-live="polite"></div>
+
+  <!-- PWA Install Prompt -->
+  <div class="pwa-install-prompt" id="pwa-install-prompt" aria-hidden="true">
+    <span class="prompt-text">📱 将此应用添加到主屏幕，获得更好的体验</span>
+    <div class="prompt-actions">
+      <button class="btn btn-primary btn-sm" id="pwa-install-btn">安装</button>
+      <button class="btn btn-secondary btn-sm" id="pwa-dismiss-btn">以后再说</button>
+    </div>
+  </div>
+
+  <!-- Scripts (deferred, non-render-blocking) -->
+  <script defer src="assets/js/utils.js"></script>
+  <script defer src="assets/js/theme.js"></script>
+  <script defer src="assets/js/navigation.js"></script>
+  <script defer src="assets/js/animations.js"></script>
+  <script defer src="assets/js/gallery.js"></script>
+  <script defer src="assets/js/faq.js"></script>
+  <script defer src="assets/js/contact.js"></script>
+  <script defer src="assets/js/qrcode.js"></script>
+  <script defer src="assets/js/pwa.js"></script>
+  <script defer src="assets/js/main.js"></script>
+
+</body>
+</html>
