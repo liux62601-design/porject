@@ -2,7 +2,7 @@
 <html lang="zh-CN" data-theme="dark">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover,user-scalable=no">
 <title>产品使用教程</title>
 <meta name="description" content="产品使用教程">
 <link rel="icon" type="image/svg+xml" href="assets/img/logo.svg">
@@ -48,9 +48,9 @@
 body{
   font-family:'Inter','SF Pro Display',-apple-system,sans-serif;
   font-size:15px;line-height:1.7;color:var(--text-primary);
-  background:var(--bg);display:flex;height:100vh;overflow:hidden;
+  background:var(--bg);display:flex;height:100vh;height:100dvh;overflow:hidden;
   -webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;
-  letter-spacing:-0.01em;
+  letter-spacing:-0.01em;touch-action:manipulation;-webkit-tap-highlight-color:transparent;
 }
 
 /* ---- Light Theme Overrides ---- */
@@ -117,6 +117,7 @@ body{
   display:flex;flex-direction:column;flex-shrink:0;
   overflow-y:auto;z-index:10;position:relative;
   backdrop-filter:blur(40px);-webkit-backdrop-filter:blur(40px);
+  -webkit-transform:translateZ(0);transform:translateZ(0);
 }
 
 .sidebar-header{
@@ -187,7 +188,7 @@ body{
 .theme-btn:hover{color:var(--text-primary);border-color:rgba(255,255,255,0.15)}
 
 /* ---- Main ---- */
-.main{flex:1;overflow-y:auto;display:flex;justify-content:center;position:relative;z-index:3}
+.main{flex:1;overflow-y:auto;display:flex;justify-content:center;position:relative;z-index:3;-webkit-overflow-scrolling:touch;overscroll-behavior:none}
 
 /* ---- Tutorial Content ---- */
 .content{
@@ -213,7 +214,7 @@ body{
 .content a{color:var(--text-primary);text-decoration:underline;text-underline-offset:3px;text-decoration-color:rgba(255,255,255,0.2);transition:text-decoration-color var(--transition-fast)}
 .content a:hover{text-decoration-color:rgba(255,255,255,0.5)}
 .content strong{color:var(--text-primary);font-weight:600}
-.content img{max-width:100%;border-radius:var(--radius);margin:1.25rem 0;cursor:zoom-in;transition:transform var(--transition)}
+.content img{max-width:100%;max-height:60vh;object-fit:contain;border-radius:var(--radius);margin:1.25rem 0;cursor:zoom-in;transition:transform var(--transition)}
 .content img:hover{transform:perspective(800px) rotateY(1deg) rotateX(0.5deg)}
 .content table{width:100%;border-collapse:collapse;margin:1rem 0;font-size:0.88rem;border-radius:var(--radius-sm);overflow:hidden}
 .content th{background:rgba(255,255,255,0.04);padding:0.55rem 0.9rem;text-align:left;font-weight:600;border:1px solid rgba(255,255,255,0.05)}
@@ -317,8 +318,8 @@ pre code{font-family:'SF Mono','JetBrains Mono',monospace}
 
 /* ---- Responsive ---- */
 @media(max-width:768px){
-  .sidebar{position:fixed;left:-100%;transition:left 0.3s var(--spring-firm);width:var(--sidebar-w)}
-  .sidebar.open{left:0}
+  .sidebar{position:fixed;transform:translateX(-100%);-webkit-transform:translateX(-100%);transition:transform 0.35s var(--spring-firm);width:var(--sidebar-w);left:0}
+  .sidebar.open{transform:translateX(0);-webkit-transform:translateX(0)}
   .content{padding:2rem 1.15rem 4rem}
   .showcase{padding:1.5rem 1rem 3rem}
   .glass-hero{padding:2.5rem 1.25rem}
