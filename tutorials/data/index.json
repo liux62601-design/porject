@@ -1,16 +1,5 @@
 [
   {
-    "id": "getting-started",
-    "title": "快速入门指南",
-    "description": "了解 TechTutorial Pro 平台的基础知识和快速上手方法。",
-    "category": "入门",
-    "tags": ["入门", "基础", "概览"],
-    "date": "2026-06-22",
-    "author": "TechTutorial Team",
-    "readingTime": 5,
-    "difficulty": "beginner"
-  },
-  {
     "id": "installation",
     "title": "环境安装与配置",
     "description": "详细的环境搭建指南，包括 SDK 安装、驱动配置和开发工具链设置。",
