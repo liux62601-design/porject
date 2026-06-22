@@ -590,108 +590,111 @@
     </div>
   </div>
 
-  <!-- ===== Product Showcase (毛玻璃) ===== -->
+  <!-- ===== Product Showcase (液态毛玻璃) ===== -->
   <div class="showcase hidden" id="showcase">
     <!-- Hero -->
     <div class="glass-hero">
       <div class="glass-hero-content">
-        <h2>液态金属 · 极致工艺</h2>
-        <p>采用航空航天级铝合金一体成型，纳米微弧氧化表面处理，每一次触碰都是享受。</p>
+        <h2>智能环境监测终端</h2>
+        <p>ESP32-C3 + DHT11 · 高精度温湿度采集 · Wi-Fi 实时上报 · 超低功耗设计</p>
       </div>
     </div>
 
     <!-- Stats -->
     <div class="stats-row">
       <div class="stat-card">
-        <div class="stat-number">0.03<span style="font-size:1rem;">s</span></div>
-        <div class="stat-label">极速响应</div>
+        <div class="stat-number">±0.5<span style="font-size:0.85rem;">°C</span></div>
+        <div class="stat-label">温度精度</div>
       </div>
       <div class="stat-card">
-        <div class="stat-number">99.9<span style="font-size:1rem;">%</span></div>
-        <div class="stat-label">稳定运行率</div>
+        <div class="stat-number">±2<span style="font-size:0.85rem;">%RH</span></div>
+        <div class="stat-label">湿度精度</div>
       </div>
       <div class="stat-card">
-        <div class="stat-number">10K<span style="font-size:1rem;">+</span></div>
-        <div class="stat-label">全球用户</div>
+        <div class="stat-number">160<span style="font-size:0.85rem;">MHz</span></div>
+        <div class="stat-label">RISC-V 处理器</div>
       </div>
     </div>
 
-    <!-- Product Cards -->
-    <div class="glass-card">
-      <div class="glass-card-content">
-        <div class="gc-layout">
-          <div class="gc-text">
-            <h3>智能核心模块</h3>
-            <p>搭载自研神经网络引擎，实时处理复杂计算任务。液冷散热系统确保长时间高负载运行零降频。</p>
-            <p>一体化设计，即插即用。支持 Wi-Fi 6、蓝牙 5.3、Thread 多协议无缝切换。</p>
-            <div class="gc-tags">
-              <span class="gc-tag">AI 加速</span>
-              <span class="gc-tag">液冷散热</span>
-              <span class="gc-tag">多协议</span>
-            </div>
-          </div>
-          <div class="gc-image">
-            <img src="assets/img/hardware/hardware-1.svg" alt="智能核心模块" loading="lazy" onclick="openLightbox(this.src)" style="cursor:zoom-in;">
-          </div>
-        </div>
-      </div>
-    </div>
-
+    <!-- Card 1: 产品全身照 -->
     <div class="glass-card">
       <div class="glass-card-content">
         <div class="gc-layout">
           <div class="gc-image">
-            <img src="assets/img/hardware/hardware-2.svg" alt="传感器阵列" loading="lazy" onclick="openLightbox(this.src)" style="cursor:zoom-in;">
+            <img src="assets/img/product-full.jpg" alt="产品全身照" loading="lazy" onclick="openLightbox(this.src)">
           </div>
           <div class="gc-text">
-            <h3>高精度传感器阵列</h3>
-            <p>9轴 IMU + 气压计 + 磁力计，<strong>0.001° 角度精度</strong>。内置自校准算法，出厂前逐一调校。</p>
-            <p>IP68 防水防尘，-40°C ~ 85°C 工业级宽温工作范围，极端环境依然稳定可靠。</p>
+            <h3>智能环境监测终端</h3>
+            <p>集成了 <strong>ESP32-C3 主控芯片</strong>与 <strong>DHT11 温湿度传感器</strong>，实现环境数据的精准采集与无线传输。</p>
+            <p>支持 Wi-Fi 实时上报至云端平台，低功耗待机模式下仅消耗 <strong>5µA</strong>，单颗纽扣电池可持续工作 2 年以上。</p>
             <div class="gc-tags">
-              <span class="gc-tag">9轴IMU</span>
-              <span class="gc-tag">IP68</span>
-              <span class="gc-tag">工业级</span>
+              <span class="gc-tag">Wi-Fi 无线</span>
+              <span class="gc-tag">超低功耗</span>
+              <span class="gc-tag">云端上报</span>
+              <span class="gc-tag">小巧便携</span>
             </div>
           </div>
         </div>
       </div>
     </div>
 
+    <!-- Card 2: ESP32-C3 芯片 -->
     <div class="glass-card">
       <div class="glass-card-content">
         <div class="gc-layout">
           <div class="gc-text">
-            <h3>可视化开发平台</h3>
-            <p>拖拽式编程 + 实时数据看板，<strong>零代码基础</strong>也能快速上手。内置 200+ 功能组件、50+ 行业模板。</p>
-            <p>一键生成固件，自动优化编译参数。云端协作，团队多人实时编辑同一项目。</p>
+            <h3>ESP32-C3 主控芯片</h3>
+            <p>乐鑫科技推出的 <strong>RISC-V 32 位单核处理器</strong>，主频高达 160MHz，集成 2.4GHz Wi-Fi 和 Bluetooth 5 (LE)。</p>
+            <p>内置 400KB SRAM、4MB Flash，支持 SPI / I²C / UART / GPIO 等丰富外设接口。工作电压 3.0V ~ 3.6V，深度睡眠功耗 <strong>仅 5µA</strong>。</p>
+            <ul style="margin:0.5rem 0 0.85rem 1.2rem;color:var(--text-secondary);font-size:0.9rem;">
+              <li>RISC-V 32 位 · 160MHz</li>
+              <li>Wi-Fi 802.11b/g/n</li>
+              <li>BLE 5.0 长距离</li>
+              <li>工作温度 -40 ~ 85°C</li>
+            </ul>
             <div class="gc-tags">
-              <span class="gc-tag">低代码</span>
-              <span class="gc-tag">实时协作</span>
-              <span class="gc-tag">一键部署</span>
+              <span class="gc-tag">RISC-V</span>
+              <span class="gc-tag">Wi-Fi 6</span>
+              <span class="gc-tag">BLE 5.0</span>
             </div>
+            <a href="assets/files/esp32-datasheet.pdf" target="_blank" class="datasheet-btn" style="display:inline-flex;align-items:center;gap:0.4rem;margin-top:1rem;padding:0.55rem 1.25rem;background:linear-gradient(135deg,rgba(59,130,246,0.15),rgba(139,92,246,0.15));border:1px solid rgba(99,102,241,0.3);border-radius:9999px;color:var(--accent);font-size:0.85rem;font-weight:600;text-decoration:none;transition:all 0.3s;">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="12" y1="18" x2="12" y2="12"/><line x1="9" y1="15" x2="15" y2="15"/></svg>
+              下载 ESP32-C3 数据手册 (PDF)
+            </a>
           </div>
           <div class="gc-image">
-            <img src="assets/img/showcase/showcase-1.svg" alt="可视化开发平台" loading="lazy" onclick="openLightbox(this.src)" style="cursor:zoom-in;">
+            <img src="assets/img/esp32c3.jpg" alt="ESP32-C3 芯片" loading="lazy" onclick="openLightbox(this.src)">
           </div>
         </div>
       </div>
     </div>
 
+    <!-- Card 3: DHT11 传感器 -->
     <div class="glass-card">
       <div class="glass-card-content">
         <div class="gc-layout">
           <div class="gc-image">
-            <img src="assets/img/showcase/showcase-2.svg" alt="移动端控制" loading="lazy" onclick="openLightbox(this.src)" style="cursor:zoom-in;">
+            <img src="assets/img/dht11.jpg" alt="DHT11 温湿度传感器" loading="lazy" onclick="openLightbox(this.src)">
           </div>
           <div class="gc-text">
-            <h3>移动端智能控制</h3>
-            <p>手机 App 实时监控设备状态，远程 OTA 固件升级。<strong>离线也能用</strong>，数据本地处理，隐私无忧。</p>
-            <p>支持 iOS、Android、HarmonyOS。小组件一键操作，无需打开 App 即可完成常用控制。</p>
+            <h3>DHT11 数字温湿度传感器</h3>
+            <p>内置 <strong>电容式湿度感应元件</strong>与 <strong>NTC 测温元件</strong>，单总线数字信号输出，无需额外 ADC 转换。</p>
+            <p>出厂已校准，即插即用。采样周期 1Hz（每秒 1 次），3.3V ~ 5.5V 宽电压供电，非常适合电池供电的 IoT 终端设备。</p>
+            <ul style="margin:0.5rem 0 0.85rem 1.2rem;color:var(--text-secondary);font-size:0.9rem;">
+              <li>温度范围 0 ~ 50°C · 精度 ±2°C</li>
+              <li>湿度范围 20 ~ 90%RH · 精度 ±5%RH</li>
+              <li>单总线数字协议</li>
+              <li>超小体积 12×15.5×5.5mm</li>
+            </ul>
             <div class="gc-tags">
-              <span class="gc-tag">全平台</span>
-              <span class="gc-tag">OTA升级</span>
-              <span class="gc-tag">离线可用</span>
+              <span class="gc-tag">数字输出</span>
+              <span class="gc-tag">免校准</span>
+              <span class="gc-tag">超低功耗</span>
             </div>
+            <a href="assets/files/dht11-datasheet.pdf" target="_blank" class="datasheet-btn" style="display:inline-flex;align-items:center;gap:0.4rem;margin-top:1rem;padding:0.55rem 1.25rem;background:linear-gradient(135deg,rgba(59,130,246,0.15),rgba(139,92,246,0.15));border:1px solid rgba(99,102,241,0.3);border-radius:9999px;color:var(--accent);font-size:0.85rem;font-weight:600;text-decoration:none;transition:all 0.3s;">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="12" y1="18" x2="12" y2="12"/><line x1="9" y1="15" x2="15" y2="15"/></svg>
+              下载 DHT11 数据手册 (PDF)
+            </a>
           </div>
         </div>
       </div>
