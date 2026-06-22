@@ -23,13 +23,13 @@
   },
   {
     "id": "quick-start",
-    "title": "第一个项目",
-    "description": "创建您的第一个项目，从零开始编写、编译和运行代码。",
-    "category": "开发",
-    "tags": ["项目", "编译", "运行", "示例"],
-    "date": "2026-06-18",
+    "title": "快速入门指南 — 怎么用这个设备",
+    "description": "从开机配网到日常使用，一篇搞定。",
+    "category": "入门",
+    "tags": ["快速入门", "配网", "使用说明"],
+    "date": "2026-06-22",
     "author": "TechTutorial Team",
-    "readingTime": 8,
+    "readingTime": 5,
     "difficulty": "beginner"
   },
   {
