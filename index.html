@@ -762,9 +762,11 @@
     // Keep showcase link
     nav.querySelectorAll('.nav-section').forEach(function(s) { s.remove(); });
 
+    var excludeCats = ['开发', '进阶'];
     var cats = {};
     tutorials.forEach(function(t) {
       var cat = t.category || '其他';
+      if (excludeCats.indexOf(cat) !== -1) return;
       if (!cats[cat]) cats[cat] = [];
       cats[cat].push(t);
     });
