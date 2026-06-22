@@ -476,9 +476,12 @@ function renderSidebar(){
     cats[cat].forEach(function(t){
       var a=document.createElement('a');a.className='nav-item';a.href='#/'+t.id;a.dataset.id=t.id;
       a.innerHTML='<span class="nav-dot"></span>'+esc(t.title);
-      a.addEventListener('click',function(e){e.preventDefault();loadTutorial(t.id);
-        document.getElementById('sidebar').classList.remove('open');
-        document.getElementById('overlay').style.display='none';
+      a.addEventListener('click',function(e){e.preventDefault();e.stopPropagation();
+        loadTutorial(t.id);
+        setTimeout(function(){
+          document.getElementById('sidebar').classList.remove('open');
+          document.getElementById('overlay').style.display='none';
+        },100);
       });
       s.appendChild(a);
     });
@@ -488,9 +491,12 @@ function renderSidebar(){
   var contactA=document.createElement('a');
   contactA.className='nav-item';contactA.href='#/contact';
   contactA.innerHTML='<span class="nav-dot"></span>联系我们';
-  contactA.addEventListener('click',function(e){e.preventDefault();showContact();
-    document.getElementById('sidebar').classList.remove('open');
-    document.getElementById('overlay').style.display='none';
+  contactA.addEventListener('click',function(e){e.preventDefault();e.stopPropagation();
+    showContact();
+    setTimeout(function(){
+      document.getElementById('sidebar').classList.remove('open');
+      document.getElementById('overlay').style.display='none';
+    },100);
   });
   var supportSection=Array.from(nav.querySelectorAll('.nav-section')).filter(function(s){
     return s.querySelector('.nav-section-title')&&s.querySelector('.nav-section-title').textContent==='支持';
