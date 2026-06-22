@@ -16,7 +16,7 @@
 
     {"type": "callout", "calloutType": "info", "text": "具体软件请参考下方截图，认准图标和名称。"},
 
-    {"type": "image", "src": "../assets/img/mqtt-ios.jpg", "alt": "iOS MQTT 软件截图", "caption": "iOS 用户请在 App Store 搜索下载此软件"},
+    {"type": "image", "src": "assets/img/mqtt-ios.jpg", "alt": "iOS MQTT 软件截图", "caption": "iOS 用户请在 App Store 搜索下载此软件"},
 
     {"type": "divider", "text": ""},
 
