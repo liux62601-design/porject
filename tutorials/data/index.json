@@ -1,13 +1,13 @@
 [
   {
     "id": "installation",
-    "title": "环境安装与配置",
-    "description": "详细的环境搭建指南，包括 SDK 安装、驱动配置和开发工具链设置。",
+    "title": "环境安装与配置 — 下载 App",
+    "description": "iOS / Android 手机端 MQTT 软件下载与安装指南。",
     "category": "入门",
-    "tags": ["安装", "配置", "SDK", "工具链"],
-    "date": "2026-06-20",
+    "tags": ["安装", "MQTT", "iOS", "Android"],
+    "date": "2026-06-22",
     "author": "TechTutorial Team",
-    "readingTime": 10,
+    "readingTime": 3,
     "difficulty": "beginner"
   },
   {
@@ -35,12 +35,12 @@
   {
     "id": "troubleshooting",
     "title": "常见问题排查",
-    "description": "常见开发问题的诊断和解决方法汇总。",
+    "description": "使用过程中常见问题及解决方法。",
     "category": "支持",
-    "tags": ["调试", "错误", "故障排除", "FAQ"],
-    "date": "2026-06-10",
+    "tags": ["FAQ", "故障", "配网", "WiFi"],
+    "date": "2026-06-22",
     "author": "TechTutorial Team",
-    "readingTime": 12,
-    "difficulty": "intermediate"
+    "readingTime": 3,
+    "difficulty": "beginner"
   }
 ]
