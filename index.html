@@ -53,6 +53,41 @@ body{
   letter-spacing:-0.01em;
 }
 
+/* ---- Light Theme Overrides ---- */
+[data-theme="light"]{
+  --bg:#fff;
+  --surface:rgba(0,0,0,0.02);
+  --surface-hover:rgba(0,0,0,0.04);
+  --glass:rgba(255,255,255,0.6);
+  --glass-border:rgba(0,0,0,0.08);
+  --glass-hover:rgba(0,0,0,0.06);
+  --text-primary:rgba(0,0,0,0.88);
+  --text-secondary:rgba(0,0,0,0.52);
+  --text-tertiary:rgba(0,0,0,0.28);
+  --accent:rgba(0,0,0,0.88);
+  --accent-dim:rgba(0,0,0,0.08);
+}
+[data-theme="light"] .noise{opacity:0.018}
+[data-theme="light"] .spotlight{background:radial-gradient(circle,rgba(0,0,0,0.02) 0%,transparent 70%)}
+[data-theme="light"] .sidebar{background:rgba(255,255,255,0.5);border-right-color:rgba(0,0,0,0.06)}
+[data-theme="light"] .sidebar-header{background:rgba(255,255,255,0.5)}
+[data-theme="light"] .sidebar-footer{background:rgba(255,255,255,0.5)}
+[data-theme="light"] .search-box input{background:rgba(0,0,0,0.02);border-color:rgba(0,0,0,0.08)}
+[data-theme="light"] .menu-btn{background:rgba(255,255,255,0.7);border-color:rgba(0,0,0,0.1)}
+[data-theme="light"] pre{background:rgba(0,0,0,0.025);color:#1a1a2e;border-color:rgba(0,0,0,0.08)}
+[data-theme="light"] .copy-btn{background:rgba(0,0,0,0.04);border-color:rgba(0,0,0,0.08);color:rgba(0,0,0,0.35)}
+[data-theme="light"] .copy-btn:hover{background:rgba(0,0,0,0.08);color:rgba(0,0,0,0.6)}
+[data-theme="light"] .hl-keyword{color:#7b2d9c}[data-theme="light"] .hl-string{color:#367a40}[data-theme="light"] .hl-comment{color:rgba(0,0,0,0.22);font-style:italic}[data-theme="light"] .hl-function{color:#1a5ca8}[data-theme="light"] .hl-number{color:#a85a1a}
+[data-theme="light"] .glass-card::before{background:rgba(255,255,255,0.5);border-color:rgba(0,0,0,0.06)}
+[data-theme="light"] .glass-hero::before{background:rgba(255,255,255,0.45);border-color:rgba(0,0,0,0.05)}
+[data-theme="light"] .lightbox-overlay{background:rgba(255,255,255,0.96)}
+[data-theme="light"] .btn{background:rgba(0,0,0,0.03);border-color:rgba(0,0,0,0.08);color:rgba(0,0,0,0.85)}
+[data-theme="light"] .btn:hover{background:rgba(0,0,0,0.05)}
+[data-theme="light"] .stat-card{background:rgba(0,0,0,0.02);border-color:rgba(0,0,0,0.06)}
+[data-theme="light"] .stat-card:hover{background:rgba(0,0,0,0.04)}
+[data-theme="light"] .contact-card{background:rgba(0,0,0,0.02);border-color:rgba(0,0,0,0.06)}
+[data-theme="light"] .contact-card:hover{background:rgba(0,0,0,0.04)}
+
 /* ---- Canvas Background ---- */
 #bg-canvas{
   position:fixed;inset:0;z-index:0;pointer-events:none;
