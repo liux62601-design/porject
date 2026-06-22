@@ -1,562 +1,802 @@
 <!DOCTYPE html>
-<html lang="zh-CN" data-theme="dark">
+<html lang="zh-CN" data-theme="light">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="TechTutorial Pro — 企业级技术教程平台。提供专业的技术教程、软件下载、固件更新和开发者资源。支持暗黑模式、离线访问、响应式设计。">
-  <meta name="keywords" content="技术教程,软件开发,固件下载,编程教程,开发者资源,TechTutorial">
-  <meta name="author" content="TechTutorial Pro">
-  <meta name="theme-color" content="#000000">
-  <meta name="color-scheme" content="dark light">
-
-  <!-- Open Graph -->
-  <meta property="og:title" content="TechTutorial Pro — 企业级技术教程平台">
-  <meta property="og:description" content="专业的技术教程、软件下载、固件更新和开发者资源。支持暗黑模式、离线访问。">
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="https://tech-tutorial-pro.github.io/project/">
-  <meta property="og:image" content="assets/img/showcase/showcase-1.svg">
-  <meta property="og:image:width" content="1200">
-  <meta property="og:image:height" content="630">
-  <meta property="og:locale" content="zh_CN">
-  <meta property="og:site_name" content="TechTutorial Pro">
-
-  <!-- Twitter Card -->
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="TechTutorial Pro — 企业级技术教程平台">
-  <meta name="twitter:description" content="专业的技术教程、软件下载、固件更新和开发者资源。支持暗黑模式、离线访问。">
-  <meta name="twitter:image" content="assets/img/showcase/showcase-1.svg">
-
-  <!-- Canonical -->
-  <link rel="canonical" href="https://tech-tutorial-pro.github.io/project/">
-
-  <!-- PWA -->
-  <link rel="manifest" href="manifest.json">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-  <meta name="apple-mobile-web-app-title" content="TechTutorial Pro">
-  <link rel="apple-touch-icon" href="assets/icons/icon-192.svg">
-
-  <!-- Favicon -->
+  <title>产品使用教程</title>
+  <meta name="description" content="产品使用教程 - 快速上手，从入门到精通">
   <link rel="icon" type="image/svg+xml" href="assets/img/logo.svg">
-  <link rel="alternate icon" href="favicon.ico">
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#ffffff">
 
-  <!-- Fonts: Inter + JetBrains Mono (self-hosted via Google Fonts with swap) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" media="print" onload="this.media='all'">
-  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap"></noscript>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap">
 
-  <!-- Stylesheets -->
-  <link rel="stylesheet" href="assets/css/main.css">
-  <link rel="stylesheet" href="assets/css/components.css">
-  <link rel="stylesheet" href="assets/css/animations.css">
-  <link rel="stylesheet" href="assets/css/responsive.css">
+  <style>
+    /* ===== Reset & Variables ===== */
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
-  <!-- Preload critical assets -->
-  <link rel="preload" as="image" href="assets/img/hero-bg.svg">
-
-  <!-- CSP -->
-  <meta http-equiv="Content-Security-Policy" content="
-    default-src 'self';
-    style-src 'self' 'unsafe-inline' https://fonts.googleapis.com;
-    font-src 'self' https://fonts.gstatic.com;
-    img-src 'self' data: blob:;
-    script-src 'self';
-    connect-src 'self' https://formspree.io;
-    media-src 'self';
-    frame-src https://www.youtube.com https://player.bilibili.com;
-  ">
-
-  <title>TechTutorial Pro — 企业级技术教程平台</title>
-
-  <!-- Schema.org Structured Data -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "WebSite",
-    "name": "TechTutorial Pro",
-    "url": "https://tech-tutorial-pro.github.io/project/",
-    "description": "企业级技术教程平台 — 提供专业的技术教程、软件下载、固件更新和开发者资源。",
-    "publisher": {
-      "@type": "Organization",
-      "name": "TechTutorial Pro"
-    },
-    "potentialAction": {
-      "@type": "SearchAction",
-      "target": "tutorials/index.html#/search?q={search_term_string}",
-      "query-input": "required name=search_term_string"
+    :root {
+      --bg: #ffffff;
+      --bg-sidebar: #f8f9fa;
+      --text: #1a1a2e;
+      --text-secondary: #6b7280;
+      --accent: #2563eb;
+      --accent-light: #eff6ff;
+      --border: #e5e7eb;
+      --radius: 8px;
+      --sidebar-width: 280px;
+      --header-height: 56px;
     }
-  }
-  </script>
+
+    [data-theme="dark"] {
+      --bg: #0f0f13;
+      --bg-sidebar: #16161e;
+      --text: #e5e7eb;
+      --text-secondary: #9ca3af;
+      --accent: #60a5fa;
+      --accent-light: #1e293b;
+      --border: #27272a;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, sans-serif;
+      font-size: 15px;
+      line-height: 1.7;
+      color: var(--text);
+      background: var(--bg);
+      display: flex;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    /* ===== Sidebar ===== */
+    .sidebar {
+      width: var(--sidebar-width);
+      height: 100vh;
+      background: var(--bg-sidebar);
+      border-right: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      flex-shrink: 0;
+      overflow-y: auto;
+      z-index: 100;
+    }
+
+    .sidebar-header {
+      padding: 1.25rem 1.25rem 0.75rem;
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 0;
+      background: var(--bg-sidebar);
+      z-index: 10;
+    }
+
+    .sidebar-header h1 {
+      font-size: 1.1rem;
+      font-weight: 700;
+      margin-bottom: 0.75rem;
+      color: var(--text);
+    }
+
+    .search-box {
+      position: relative;
+      margin-bottom: 0.5rem;
+    }
+
+    .search-box svg {
+      position: absolute;
+      left: 0.65rem;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 16px;
+      height: 16px;
+      color: var(--text-secondary);
+    }
+
+    .search-box input {
+      width: 100%;
+      padding: 0.5rem 0.65rem 0.5rem 2rem;
+      font-size: 0.85rem;
+      font-family: inherit;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      background: var(--bg);
+      color: var(--text);
+      outline: none;
+    }
+
+    .search-box input:focus {
+      border-color: var(--accent);
+    }
+
+    .sidebar-nav {
+      padding: 0.75rem 0;
+      flex: 1;
+      overflow-y: auto;
+    }
+
+    .nav-section {
+      padding: 0 1.25rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .nav-section-title {
+      font-size: 0.7rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--text-secondary);
+      padding: 0.5rem 0;
+    }
+
+    .nav-item {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      padding: 0.45rem 0.75rem;
+      font-size: 0.88rem;
+      color: var(--text-secondary);
+      border-radius: var(--radius);
+      cursor: pointer;
+      transition: all 0.15s;
+      text-decoration: none;
+    }
+
+    .nav-item:hover {
+      background: var(--accent-light);
+      color: var(--text);
+    }
+
+    .nav-item.active {
+      background: var(--accent-light);
+      color: var(--accent);
+      font-weight: 600;
+    }
+
+    .nav-dot {
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: var(--text-secondary);
+      flex-shrink: 0;
+      opacity: 0.4;
+    }
+
+    .nav-item.active .nav-dot {
+      background: var(--accent);
+      opacity: 1;
+    }
+
+    /* ===== Theme Toggle ===== */
+    .sidebar-footer {
+      padding: 0.75rem 1.25rem;
+      border-top: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      position: sticky;
+      bottom: 0;
+      background: var(--bg-sidebar);
+    }
+
+    .theme-btn {
+      width: 34px;
+      height: 34px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      background: var(--bg);
+      cursor: pointer;
+      color: var(--text-secondary);
+      transition: all 0.15s;
+    }
+
+    .theme-btn:hover { color: var(--accent); border-color: var(--accent); }
+
+    /* ===== Main Content ===== */
+    .main {
+      flex: 1;
+      overflow-y: auto;
+      display: flex;
+      justify-content: center;
+    }
+
+    .content {
+      max-width: 780px;
+      width: 100%;
+      padding: 2.5rem 2rem 4rem;
+    }
+
+    .content-empty {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100%;
+      text-align: center;
+      color: var(--text-secondary);
+    }
+
+    .content-empty svg {
+      width: 64px;
+      height: 64px;
+      margin-bottom: 1rem;
+      opacity: 0.3;
+    }
+
+    .content-empty h2 {
+      font-size: 1.25rem;
+      margin-bottom: 0.4rem;
+      color: var(--text);
+    }
+
+    /* ===== Tutorial Content Styles ===== */
+    .tutorial-title {
+      font-size: 1.75rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+    }
+
+    .tutorial-meta {
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+      margin-bottom: 2rem;
+      padding-bottom: 1.25rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .content h2 {
+      font-size: 1.35rem;
+      font-weight: 700;
+      margin: 2rem 0 0.75rem;
+      padding-bottom: 0.4rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .content h3 {
+      font-size: 1.1rem;
+      font-weight: 600;
+      margin: 1.5rem 0 0.5rem;
+    }
+
+    .content h4 {
+      font-size: 1rem;
+      font-weight: 600;
+      margin: 1.25rem 0 0.4rem;
+    }
+
+    .content p {
+      margin-bottom: 0.85rem;
+      color: var(--text-secondary);
+    }
+
+    .content ul, .content ol {
+      margin: 0.5rem 0 0.85rem;
+      padding-left: 1.5rem;
+      color: var(--text-secondary);
+    }
+
+    .content li { margin-bottom: 0.25rem; }
+
+    .content a { color: var(--accent); text-decoration: none; }
+    .content a:hover { text-decoration: underline; }
+
+    .content strong { color: var(--text); }
+
+    .content img {
+      max-width: 100%;
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+      margin: 1rem 0;
+    }
+
+    .content table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 1rem 0;
+      font-size: 0.9rem;
+    }
+
+    .content th {
+      background: var(--bg-sidebar);
+      padding: 0.65rem 1rem;
+      text-align: left;
+      font-weight: 600;
+      border: 1px solid var(--border);
+    }
+
+    .content td {
+      padding: 0.65rem 1rem;
+      border: 1px solid var(--border);
+    }
+
+    .content blockquote {
+      border-left: 3px solid var(--accent);
+      padding: 0.75rem 1rem;
+      margin: 1rem 0;
+      background: var(--accent-light);
+      border-radius: 0 var(--radius) var(--radius) 0;
+      color: var(--text-secondary);
+    }
+
+    .content hr {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 2rem 0;
+    }
+
+    /* Code */
+    .content :not(pre) > code {
+      background: var(--bg-sidebar);
+      padding: 0.15em 0.4em;
+      border-radius: 4px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.85em;
+      border: 1px solid var(--border);
+    }
+
+    pre {
+      background: #1e1e2e;
+      color: #cdd6f4;
+      padding: 1.25rem;
+      border-radius: var(--radius);
+      overflow-x: auto;
+      margin: 0.85rem 0;
+      position: relative;
+      font-size: 0.85rem;
+      line-height: 1.65;
+    }
+
+    pre code {
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    .copy-btn {
+      position: absolute;
+      top: 0.5rem;
+      right: 0.5rem;
+      padding: 0.3rem 0.65rem;
+      font-size: 0.75rem;
+      font-family: inherit;
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 4px;
+      color: #cdd6f4;
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+
+    .copy-btn:hover { background: rgba(255,255,255,0.15); }
+    .copy-btn.copied { background: rgba(34,197,94,0.2); border-color: rgba(34,197,94,0.4); }
+
+    /* Callouts */
+    .callout {
+      padding: 1rem;
+      border-radius: var(--radius);
+      margin: 1rem 0;
+      display: flex;
+      gap: 0.75rem;
+      font-size: 0.9rem;
+    }
+
+    .callout-info { background: #eff6ff; border: 1px solid #bfdbfe; color: #1e40af; }
+    .callout-warning { background: #fffbeb; border: 1px solid #fde68a; color: #92400e; }
+    .callout-tip { background: #f0fdf4; border: 1px solid #bbf7d0; color: #166534; }
+
+    [data-theme="dark"] .callout-info { background: #1e293b; border-color: #1e3a5f; color: #93c5fd; }
+    [data-theme="dark"] .callout-warning { background: #29241c; border-color: #4a3520; color: #fcd34d; }
+    [data-theme="dark"] .callout-tip { background: #1a2e1a; border-color: #1a4a1a; color: #86efac; }
+
+    /* Syntax Highlighting */
+    .hl-keyword { color: #c678dd; }
+    .hl-string { color: #98c379; }
+    .hl-comment { color: #5c6370; font-style: italic; }
+    .hl-function { color: #61afef; }
+    .hl-number { color: #d19a66; }
+    .hl-attr { color: #e06c75; }
+
+    /* Mobile */
+    .menu-btn {
+      display: none;
+      position: fixed;
+      top: 0.75rem;
+      left: 0.75rem;
+      z-index: 200;
+      width: 40px;
+      height: 40px;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      background: var(--bg);
+      cursor: pointer;
+      color: var(--text);
+    }
+
+    @media (max-width: 768px) {
+      .sidebar {
+        position: fixed;
+        left: -100%;
+        transition: left 0.25s;
+        width: 280px;
+      }
+      .sidebar.open { left: 0; }
+      .menu-btn { display: flex; }
+      .content { padding: 2.5rem 1rem 3rem; }
+    }
+  </style>
 </head>
 <body>
 
-  <!-- ====== Navigation ====== -->
-  <header class="nav" id="nav" role="banner">
-    <div class="nav-inner">
-      <a href="#hero" class="nav-logo" aria-label="TechTutorial Pro 首页">
-        <img src="assets/img/logo.svg" alt="TechTutorial Pro Logo" width="32" height="32">
-        <span>TechTutorial</span>
-      </a>
-
-      <nav class="nav-links" role="navigation" aria-label="主导航">
-        <a href="#features" data-nav="features">特性</a>
-        <a href="#showcase" data-nav="showcase">展示</a>
-        <a href="#hardware" data-nav="hardware">硬件</a>
-        <a href="#software" data-nav="software">软件</a>
-        <a href="tutorials/index.html">教程</a>
-        <a href="downloads/index.html">下载</a>
-        <a href="#faq" data-nav="faq">FAQ</a>
-        <a href="#contact" data-nav="contact">联系我们</a>
-      </nav>
-
-      <div class="nav-actions">
-        <button class="theme-toggle" id="theme-toggle" aria-label="切换暗黑/明亮模式">
-          <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
-          <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1111.21 3a7 7 0 009.79 9.79z"/></svg>
-        </button>
-        <button class="mobile-menu-btn" id="mobile-menu-btn" aria-label="打开菜单" aria-expanded="false">
-          <svg class="icon-menu" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
-        </button>
-      </div>
-    </div>
-  </header>
-
-  <!-- Mobile Menu -->
-  <div class="mobile-menu" id="mobile-menu" role="dialog" aria-label="移动端菜单" aria-hidden="true">
-    <a href="#hero">首页</a>
-    <a href="#features">特性</a>
-    <a href="#showcase">展示</a>
-    <a href="#hardware">硬件</a>
-    <a href="#software">软件</a>
-    <a href="tutorials/index.html">教程</a>
-    <a href="downloads/index.html">下载</a>
-    <a href="#faq">FAQ</a>
-    <a href="#contact">联系我们</a>
-  </div>
-
-  <!-- ====== Main Content ====== -->
-  <main id="main-content">
-
-    <!-- ====== Hero Section ====== -->
-    <section class="hero" id="hero" aria-label="首页横幅">
-      <div class="hero-particles" aria-hidden="true">
-        <div class="hero-blob"></div>
-        <div class="hero-blob"></div>
-        <div class="hero-blob"></div>
-      </div>
-      <div class="hero-content">
-        <div class="hero-badge reveal-up">
-          <span class="dot" aria-hidden="true"></span>
-          全新 v1.0.0 版本已发布
-        </div>
-        <h1 class="reveal-up">
-          下一代 <span class="text-gradient animate-gradient">技术教程</span><br>平台
-        </h1>
-        <p class="reveal-up">
-          从入门到精通，覆盖硬件开发、软件编程、固件设计的全方位技术教程。
-          支持离线访问、暗黑模式，为开发者打造极致学习体验。
-        </p>
-        <div class="hero-actions reveal-up">
-          <a href="tutorials/index.html" class="btn btn-primary btn-lg">
-            开始学习
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-          </a>
-          <a href="downloads/index.html" class="btn btn-glass btn-lg">
-            下载中心
-          </a>
-        </div>
-      </div>
-      <button class="hero-scroll" aria-label="向下滚动" onclick="document.getElementById('features').scrollIntoView({behavior:'smooth'})">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 13l5 5 5-5M7 6l5 5 5-5"/></svg>
-      </button>
-    </section>
-
-    <!-- ====== Features Section ====== -->
-    <section class="section" id="features" aria-labelledby="features-title">
-      <div class="container">
-        <div class="section-header reveal-up">
-          <span class="section-label">核心特性</span>
-          <h2 id="features-title">为什么选择 TechTutorial Pro</h2>
-          <p class="subtitle">我们提供企业级的教程体验，助您快速掌握前沿技术</p>
-        </div>
-        <div class="features-grid stagger-children">
-          <article class="card feature-card reveal-up">
-            <div class="card-icon">
-              <img src="assets/img/features/feature-1.svg" alt="" width="28" height="28" aria-hidden="true">
-            </div>
-            <h3>极速响应</h3>
-            <p>纯静态架构，毫秒级加载速度。Lighthouse 得分 95+，为您的每一秒学习时间负责。</p>
-          </article>
-          <article class="card feature-card reveal-up">
-            <div class="card-icon">
-              <img src="assets/img/features/feature-2.svg" alt="" width="28" height="28" aria-hidden="true">
-            </div>
-            <h3>安全可靠</h3>
-            <p>CSP 兼容，零内联脚本污染，XSS 防护。GitHub Pages HTTPS 加密传输，保障数据安全。</p>
-          </article>
-          <article class="card feature-card reveal-up">
-            <div class="card-icon">
-              <img src="assets/img/features/feature-3.svg" alt="" width="28" height="28" aria-hidden="true">
-            </div>
-            <h3>代码高亮</h3>
-            <p>内置语法高亮引擎，支持多种编程语言。一键复制代码块，提升开发效率。</p>
-          </article>
-          <article class="card feature-card reveal-up">
-            <div class="card-icon">
-              <img src="assets/img/features/feature-4.svg" alt="" width="28" height="28" aria-hidden="true">
-            </div>
-            <h3>一键部署</h3>
-            <p>GitHub Actions 自动构建部署。Push 即上线，零配置，永久免费。</p>
-          </article>
-          <article class="card feature-card reveal-up">
-            <div class="card-icon">
-              <img src="assets/img/features/feature-5.svg" alt="" width="28" height="28" aria-hidden="true">
-            </div>
-            <h3>全端适配</h3>
-            <p>响应式设计，完美适配手机、平板、电脑。暗黑模式自动切换，保护您的视力。</p>
-          </article>
-          <article class="card feature-card reveal-up">
-            <div class="card-icon">
-              <img src="assets/img/features/feature-6.svg" alt="" width="28" height="28" aria-hidden="true">
-            </div>
-            <h3>离线可用</h3>
-            <p>PWA 技术支持，可添加到桌面。Service Worker 缓存策略，离线也能访问教程。</p>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <!-- ====== Showcase Section ====== -->
-    <section class="section" id="showcase" aria-labelledby="showcase-title" style="background: var(--bg-secondary);">
-      <div class="container">
-        <div class="section-header reveal-up">
-          <span class="section-label">项目展示</span>
-          <h2 id="showcase-title">精美的界面设计</h2>
-          <p class="subtitle">科技感十足的设计语言，每一处细节都经过精心打磨</p>
-        </div>
-        <div class="showcase-grid stagger-children">
-          <div class="showcase-item reveal-scale" data-lightbox data-full="assets/img/showcase/showcase-1.svg">
-            <img src="assets/img/showcase/showcase-1.svg" alt="管理后台仪表盘界面展示" loading="lazy">
-          </div>
-          <div class="showcase-item reveal-scale" data-lightbox data-full="assets/img/showcase/showcase-2.svg">
-            <img src="assets/img/showcase/showcase-2.svg" alt="移动端应用界面展示" loading="lazy">
-          </div>
-          <div class="showcase-item reveal-scale" data-lightbox data-full="assets/img/showcase/showcase-3.svg">
-            <img src="assets/img/showcase/showcase-3.svg" alt="代码编辑器界面展示" loading="lazy">
-          </div>
-        </div>
-      </div>
-      <!-- Lightbox -->
-      <div class="lightbox" id="lightbox" role="dialog" aria-label="图片查看器" aria-hidden="true">
-        <button class="lightbox-close" aria-label="关闭"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
-        <button class="lightbox-prev" aria-label="上一张"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg></button>
-        <button class="lightbox-next" aria-label="下一张"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg></button>
-        <div class="lightbox-content">
-          <img src="" alt="" id="lightbox-img">
-        </div>
-      </div>
-    </section>
-
-    <!-- ====== Hardware Section ====== -->
-    <section class="section" id="hardware" aria-labelledby="hardware-title">
-      <div class="container">
-        <div class="split-section">
-          <div class="split-image reveal-left">
-            <img src="assets/img/hardware/hardware-1.svg" alt="高性能开发板硬件展示" loading="lazy">
-          </div>
-          <div class="split-content reveal-right">
-            <span class="section-label">硬件平台</span>
-            <h2 id="hardware-title">高性能开发板</h2>
-            <p>专为 IoT 和嵌入式开发设计的硬件平台，搭载最新 ARM Cortex-M7 处理器，主频高达 480MHz。丰富的外设接口，让您的创意不受限制。</p>
-            <div class="specs">
-              <div class="spec-item"><span class="spec-label">处理器</span><span class="spec-value">ARM Cortex-M7 @ 480MHz</span></div>
-              <div class="spec-item"><span class="spec-label">内存</span><span class="spec-value">1MB SRAM / 16MB Flash</span></div>
-              <div class="spec-item"><span class="spec-label">连接</span><span class="spec-value">Wi-Fi 6 / BLE 5.3 / Ethernet</span></div>
-              <div class="spec-item"><span class="spec-label">接口</span><span class="spec-value">USB-C / GPIO x40 / SPI / I²C / UART</span></div>
-            </div>
-            <a href="tutorials/index.html#/getting-started" class="btn btn-primary" style="margin-top: 1.5rem;">查看硬件教程 →</a>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ====== Software Section ====== -->
-    <section class="section" id="software" aria-labelledby="software-title" style="background: var(--bg-secondary);">
-      <div class="container">
-        <div class="split-section reverse">
-          <div class="split-image reveal-right">
-            <img src="assets/img/hardware/hardware-2.svg" alt="软件开发工具套件展示" loading="lazy">
-          </div>
-          <div class="split-content reveal-left">
-            <span class="section-label">软件生态</span>
-            <h2 id="software-title">全栈开发工具链</h2>
-            <p>从固件 SDK 到云端管理平台，我们提供完整的软件开发工具链。支持 C/C++、Python、JavaScript 等多种语言，一键编译、烧录、调试。</p>
-            <div class="stat-bars">
-              <div class="stat-bar-item">
-                <div class="stat-bar-label"><span>编译速度</span><span data-count="95">95%</span></div>
-                <div class="stat-bar-track"><div class="stat-bar-fill" data-width="95"></div></div>
-              </div>
-              <div class="stat-bar-item">
-                <div class="stat-bar-label"><span>代码覆盖率</span><span data-count="88">88%</span></div>
-                <div class="stat-bar-track"><div class="stat-bar-fill" data-width="88"></div></div>
-              </div>
-              <div class="stat-bar-item">
-                <div class="stat-bar-label"><span>SDK 包大小</span><span data-count="72">72%</span></div>
-                <div class="stat-bar-track"><div class="stat-bar-fill" data-width="72"></div></div>
-              </div>
-              <div class="stat-bar-item">
-                <div class="stat-bar-label"><span>跨平台兼容</span><span data-count="100">100%</span></div>
-                <div class="stat-bar-track"><div class="stat-bar-fill" data-width="100"></div></div>
-              </div>
-            </div>
-            <a href="downloads/index.html" class="btn btn-primary" style="margin-top: 1.5rem;">下载 SDK →</a>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ====== FAQ Section ====== -->
-    <section class="section" id="faq" aria-labelledby="faq-title">
-      <div class="container">
-        <div class="section-header reveal-up">
-          <span class="section-label">常见问题</span>
-          <h2 id="faq-title">FAQ</h2>
-          <p class="subtitle">快速找到您想要的答案</p>
-        </div>
-        <div class="faq-search reveal-up">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
-          <input type="search" id="faq-search-input" placeholder="搜索常见问题..." aria-label="搜索FAQ">
-        </div>
-        <div class="faq-list" id="faq-list">
-          <div class="faq-item reveal-up">
-            <button class="faq-question" aria-expanded="false">
-              <span>TechTutorial Pro 支持哪些平台？</span>
-              <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
-            </button>
-            <div class="faq-answer"><div class="faq-answer-inner">
-              <p>TechTutorial Pro 是一个纯静态网站，支持所有现代浏览器，包括 Chrome、Edge、Safari、Firefox。同时完美适配 Windows、macOS、Linux、iOS 和 Android 系统。得益于 PWA 技术，您甚至可以将网站添加到手机桌面，获得接近原生应用的体验。</p>
-            </div></div>
-          </div>
-          <div class="faq-item reveal-up">
-            <button class="faq-question" aria-expanded="false">
-              <span>如何开始学习教程？</span>
-              <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
-            </button>
-            <div class="faq-answer"><div class="faq-answer-inner">
-              <p>访问我们的<a href="tutorials/index.html">教程中心</a>，选择您感兴趣的分类开始学习。教程支持 Markdown 格式，包含代码高亮、复制按钮、步骤导航和目录导航。支持图片、GIF 和视频嵌入，提供最佳的学习体验。</p>
-            </div></div>
-          </div>
-          <div class="faq-item reveal-up">
-            <button class="faq-question" aria-expanded="false">
-              <span>网站是否需要付费？</span>
-              <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
-            </button>
-            <div class="faq-answer"><div class="faq-answer-inner">
-              <p><strong>完全免费！</strong>TechTutorial Pro 基于 GitHub Pages 部署，永久免费，无广告。所有教程、软件下载、固件更新和源代码均免费提供。我们致力于为全球开发者提供高质量的技术教育资源。</p>
-            </div></div>
-          </div>
-          <div class="faq-item reveal-up">
-            <button class="faq-question" aria-expanded="false">
-              <span>支持离线使用吗？</span>
-              <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
-            </button>
-            <div class="faq-answer"><div class="faq-answer-inner">
-              <p>支持！TechTutorial Pro 使用 Service Worker 技术实现了离线缓存。首次访问后，核心内容和已浏览的教程页面将自动缓存到本地。即使没有网络连接，您也可以正常浏览已缓存的教程内容。您还可以通过 PWA 功能将网站安装到桌面。</p>
-            </div></div>
-          </div>
-          <div class="faq-item reveal-up">
-            <button class="faq-question" aria-expanded="false">
-              <span>如何贡献教程内容？</span>
-              <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
-            </button>
-            <div class="faq-answer"><div class="faq-answer-inner">
-              <p>我们欢迎社区贡献！请查看我们的<a href="CONTRIBUTING.md">贡献指南</a>了解详情。您可以通过 GitHub Fork 本项目，添加或修改教程内容后提交 Pull Request。教程内容位于 <code>tutorials/data/</code> 目录下的 JSON 文件中。</p>
-            </div></div>
-          </div>
-          <div class="faq-item reveal-up">
-            <button class="faq-question" aria-expanded="false">
-              <span>如何部署自己的 TechTutorial 网站？</span>
-              <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
-            </button>
-            <div class="faq-answer"><div class="faq-answer-inner">
-              <p>非常简单！只需 Fork 本项目到您的 GitHub 账号，GitHub Actions 将自动部署到 GitHub Pages。无需任何额外配置。您只需修改 <code>tutorials/data/</code> 中的教程内容、替换 <code>assets/img/</code> 中的图片，然后 Push 到 main 分支即可自动更新网站。</p>
-            </div></div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ====== Changelog Section ====== -->
-    <section class="section" id="changelog" aria-labelledby="changelog-title" style="background: var(--bg-secondary);">
-      <div class="container">
-        <div class="section-header reveal-up">
-          <span class="section-label">更新日志</span>
-          <h2 id="changelog-title">版本历史</h2>
-          <p class="subtitle">持续迭代，追求卓越</p>
-        </div>
-        <div class="timeline">
-          <div class="timeline-item reveal-left">
-            <div class="timeline-version">v1.0.0</div>
-            <div class="timeline-date">2026-06-22</div>
-            <ul class="timeline-changes">
-              <li>🎉 首个正式版本发布</li>
-              <li>完整的教程中心，支持 Markdown、代码高亮、搜索</li>
-              <li>下载中心，支持软件/固件/PDF/源代码分类</li>
-              <li>暗黑模式 / 明亮模式切换</li>
-              <li>PWA 支持，可离线访问</li>
-              <li>响应式布局，全端适配</li>
-              <li>GitHub Actions 自动部署</li>
-              <li>SEO 优化，Lighthouse 95+</li>
-            </ul>
-          </div>
-          <div class="timeline-item reveal-left">
-            <div class="timeline-version">v0.9.0-beta</div>
-            <div class="timeline-date">2026-06-10</div>
-            <ul class="timeline-changes">
-              <li>内测版本，核心功能开发完成</li>
-              <li>教程渲染引擎开发</li>
-              <li>下载中心基础功能</li>
-              <li>暗黑模式实现</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ====== Contact Section ====== -->
-    <section class="section" id="contact" aria-labelledby="contact-title">
-      <div class="container">
-        <div class="section-header reveal-up">
-          <span class="section-label">联系我们</span>
-          <h2 id="contact-title">获取帮助</h2>
-          <p class="subtitle">有任何问题或建议？我们很乐意听取您的意见</p>
-        </div>
-        <form class="contact-form reveal-up" id="contact-form" novalidate>
-          <div class="form-group">
-            <label for="contact-name">姓名</label>
-            <input type="text" id="contact-name" name="name" placeholder="请输入您的姓名" required minlength="2" autocomplete="name">
-            <span class="error-msg">请输入至少 2 个字符的姓名</span>
-          </div>
-          <div class="form-group">
-            <label for="contact-email">邮箱</label>
-            <input type="email" id="contact-email" name="email" placeholder="you@example.com" required autocomplete="email">
-            <span class="error-msg">请输入有效的邮箱地址</span>
-          </div>
-          <div class="form-group">
-            <label for="contact-subject">主题</label>
-            <input type="text" id="contact-subject" name="subject" placeholder="请输入主题" required>
-            <span class="error-msg">请输入主题</span>
-          </div>
-          <div class="form-group">
-            <label for="contact-message">消息</label>
-            <textarea id="contact-message" name="message" placeholder="请详细描述您的问题或建议..." required minlength="10"></textarea>
-            <span class="error-msg">请输入至少 10 个字符的消息</span>
-          </div>
-          <button type="submit" class="btn btn-primary btn-lg" style="width: 100%;">
-            <span class="btn-text">发送消息</span>
-            <span class="btn-loading hidden">
-              <span class="spinner" style="width:18px;height:18px;border-width:2px;"></span>
-              发送中...
-            </span>
-          </button>
-        </form>
-      </div>
-    </section>
-
-  </main>
-
-  <!-- ====== Footer ====== -->
-  <footer class="footer" role="contentinfo">
-    <div class="container">
-      <div class="footer-grid">
-        <div class="footer-brand">
-          <a href="#hero" class="nav-logo" style="margin-bottom: 1rem;">
-            <img src="assets/img/logo.svg" alt="Logo" width="32" height="32">
-            <span>TechTutorial Pro</span>
-          </a>
-          <p>企业级技术教程平台。从入门到精通，为全球开发者提供高质量的技术教育资源。</p>
-          <div class="footer-social" style="margin-top: 1.5rem;">
-            <a href="https://github.com" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
-            </a>
-            <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" aria-label="Twitter">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
-            </a>
-            <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" aria-label="YouTube">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
-            </a>
-          </div>
-        </div>
-        <div class="footer-col">
-          <h4>快速链接</h4>
-          <ul>
-            <li><a href="tutorials/index.html">教程中心</a></li>
-            <li><a href="downloads/index.html">下载中心</a></li>
-            <li><a href="#faq">常见问题</a></li>
-            <li><a href="#changelog">更新日志</a></li>
-          </ul>
-        </div>
-        <div class="footer-col">
-          <h4>资源</h4>
-          <ul>
-            <li><a href="tutorials/index.html#/getting-started">入门指南</a></li>
-            <li><a href="tutorials/index.html#/installation">安装指南</a></li>
-            <li><a href="tutorials/index.html#/troubleshooting">故障排除</a></li>
-            <li><a href="CONTRIBUTING.md">贡献指南</a></li>
-          </ul>
-        </div>
-        <div class="footer-col">
-          <h4>关于</h4>
-          <ul>
-            <li><a href="#contact">联系我们</a></li>
-            <li><a href="LICENSE">许可证</a></li>
-            <li><a href="SECURITY.md">安全政策</a></li>
-            <li><a href="CHANGELOG.md">变更日志</a></li>
-          </ul>
-        </div>
-      </div>
-      <div class="footer-bottom">
-        <div class="footer-copyright">
-          &copy; <span id="current-year">2026</span> TechTutorial Pro. All rights reserved. MIT License.
-        </div>
-        <div class="footer-qr">
-          <canvas id="qrcode-canvas" width="80" height="80" aria-label="扫码访问本站"></canvas>
-          <span class="footer-qr-text">扫码访问<br>当前页面</span>
-        </div>
-      </div>
-    </div>
-  </footer>
-
-  <!-- Back to Top -->
-  <button class="back-to-top" id="back-to-top" aria-label="返回顶部">
-    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 15l-6-6-6 6"/></svg>
-  </button>
-
-  <!-- Toast Container -->
-  <div class="toast-container" id="toast-container" aria-live="polite"></div>
-
-  <!-- PWA Install Prompt -->
-  <div class="pwa-install-prompt" id="pwa-install-prompt" aria-hidden="true">
-    <span class="prompt-text">📱 将此应用添加到主屏幕，获得更好的体验</span>
-    <div class="prompt-actions">
-      <button class="btn btn-primary btn-sm" id="pwa-install-btn">安装</button>
-      <button class="btn btn-secondary btn-sm" id="pwa-dismiss-btn">以后再说</button>
+<!-- Sidebar -->
+<aside class="sidebar" id="sidebar">
+  <div class="sidebar-header">
+    <h1>📘 产品使用教程</h1>
+    <div class="search-box">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+      <input type="search" id="search-input" placeholder="搜索教程..." autocomplete="off">
     </div>
   </div>
+  <nav class="sidebar-nav" id="sidebar-nav">
+    <!-- Populated by JS -->
+  </nav>
+  <div class="sidebar-footer">
+    <button class="theme-btn" id="theme-btn" title="切换暗黑模式" aria-label="切换暗黑模式">
+      <svg id="icon-sun" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
+      <svg id="icon-moon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:none;"><path d="M21 12.79A9 9 0 1111.21 3a7 7 0 009.79 9.79z"/></svg>
+    </button>
+    <span style="font-size:0.8rem;color:var(--text-secondary);">暗黑模式</span>
+  </div>
+</aside>
 
-  <!-- Scripts (deferred, non-render-blocking) -->
-  <script defer src="assets/js/utils.js"></script>
-  <script defer src="assets/js/theme.js"></script>
-  <script defer src="assets/js/navigation.js"></script>
-  <script defer src="assets/js/animations.js"></script>
-  <script defer src="assets/js/gallery.js"></script>
-  <script defer src="assets/js/faq.js"></script>
-  <script defer src="assets/js/contact.js"></script>
-  <script defer src="assets/js/qrcode.js"></script>
-  <script defer src="assets/js/pwa.js"></script>
-  <script defer src="assets/js/main.js"></script>
+<!-- Overlay for mobile -->
+<div id="overlay" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.4);z-index:99;" onclick="document.getElementById('sidebar').classList.remove('open');this.style.display='none'"></div>
+
+<!-- Mobile menu button -->
+<button class="menu-btn" id="menu-btn" aria-label="菜单" onclick="document.getElementById('sidebar').classList.toggle('open');document.getElementById('overlay').style.display=document.getElementById('sidebar').classList.contains('open')?'block':'none'">
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+</button>
+
+<!-- Main Content -->
+<main class="main" id="main">
+  <div class="content" id="content">
+    <div class="content-empty" id="empty-state">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 19.5A2.5 2.5 0 016.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/><line x1="8" y1="7" x2="16" y2="7"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
+      <h2>选择一篇教程</h2>
+      <p>从左侧列表中选择您想查看的教程内容</p>
+    </div>
+  </div>
+</main>
+
+<script>
+(function() {
+  'use strict';
+
+  var tutorials = [];
+  var currentId = null;
+
+  // ---- Theme ----
+  var themeBtn = document.getElementById('theme-btn');
+  var html = document.documentElement;
+  var saved = localStorage.getItem('theme') || 'light';
+  html.setAttribute('data-theme', saved);
+  updateThemeIcon();
+
+  themeBtn.addEventListener('click', function() {
+    var next = html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+    html.setAttribute('data-theme', next);
+    localStorage.setItem('theme', next);
+    updateThemeIcon();
+  });
+
+  function updateThemeIcon() {
+    var isDark = html.getAttribute('data-theme') === 'dark';
+    document.getElementById('icon-sun').style.display = isDark ? 'none' : '';
+    document.getElementById('icon-moon').style.display = isDark ? '' : 'none';
+  }
+
+  // ---- Load Index ----
+  fetch('tutorials/data/index.json')
+    .then(function(r) { return r.json(); })
+    .then(function(data) {
+      tutorials = data;
+      renderSidebar();
+    })
+    .catch(function(e) { console.error('加载教程列表失败:', e); });
+
+  // ---- Render Sidebar ----
+  function renderSidebar() {
+    var nav = document.getElementById('sidebar-nav');
+    // Group by category
+    var cats = {};
+    tutorials.forEach(function(t) {
+      var cat = t.category || '其他';
+      if (!cats[cat]) cats[cat] = [];
+      cats[cat].push(t);
+    });
+
+    nav.innerHTML = '';
+    Object.keys(cats).forEach(function(cat) {
+      var section = document.createElement('div');
+      section.className = 'nav-section';
+      section.innerHTML = '<div class="nav-section-title">' + esc(cat) + ' (' + cats[cat].length + ')</div>';
+      cats[cat].forEach(function(t) {
+        var a = document.createElement('a');
+        a.className = 'nav-item';
+        a.href = '#/' + t.id;
+        a.dataset.id = t.id;
+        a.innerHTML = '<span class="nav-dot"></span>' + esc(t.title);
+        a.addEventListener('click', function(e) {
+          e.preventDefault();
+          loadTutorial(t.id);
+          // Close mobile sidebar
+          document.getElementById('sidebar').classList.remove('open');
+          document.getElementById('overlay').style.display = 'none';
+        });
+        section.appendChild(a);
+      });
+      nav.appendChild(section);
+    });
+  }
+
+  // ---- Search ----
+  document.getElementById('search-input').addEventListener('input', function() {
+    var q = this.value.toLowerCase().trim();
+    document.querySelectorAll('.nav-item').forEach(function(item) {
+      var t = tutorials.find(function(t) { return t.id === item.dataset.id; });
+      if (!t) return;
+      var match = !q || t.title.toLowerCase().includes(q) ||
+        (t.tags || []).some(function(tag) { return tag.toLowerCase().includes(q); }) ||
+        (t.description || '').toLowerCase().includes(q);
+      item.style.display = match ? '' : 'none';
+    });
+  });
+
+  // ---- Load Tutorial ----
+  function loadTutorial(id) {
+    currentId = id;
+    var content = document.getElementById('content');
+    content.innerHTML = '<div style="text-align:center;padding:3rem;color:var(--text-secondary);">加载中...</div>';
+
+    fetch('tutorials/data/' + id + '.json')
+      .then(function(r) { if (!r.ok) throw new Error('Not found'); return r.json(); })
+      .then(function(data) {
+        document.title = data.title + ' - 产品使用教程';
+        content.innerHTML = '';
+        content.appendChild(renderTutorial(data));
+        // Highlight active
+        document.querySelectorAll('.nav-item').forEach(function(a) {
+          a.classList.toggle('active', a.dataset.id === id);
+        });
+        if (window.location.hash !== '#/' + id) {
+          history.pushState(null, '', '#/' + id);
+        }
+        window.scrollTo(0, 0);
+      })
+      .catch(function(e) {
+        content.innerHTML = '<div class="content-empty"><h2>加载失败</h2><p>' + esc(e.message) + '</p></div>';
+      });
+  }
+
+  // ---- Render Tutorial Content ----
+  function renderTutorial(data) {
+    var frag = document.createDocumentFragment();
+
+    // Header
+    var header = document.createElement('div');
+    var diffLabels = { beginner: '入门', intermediate: '进阶', advanced: '高级' };
+    header.innerHTML =
+      '<h1 class="tutorial-title">' + esc(data.title) + '</h1>' +
+      '<div class="tutorial-meta">' +
+        (data.date || '') + ' · 阅读约 ' + (data.readingTime || 5) + ' 分钟 · ' +
+        (diffLabels[data.difficulty] || '') +
+      '</div>';
+    if (data.description) {
+      header.innerHTML += '<p style="margin-bottom:2rem;">' + esc(data.description) + '</p>';
+    }
+    frag.appendChild(header);
+
+    // Content blocks
+    (data.content || []).forEach(function(block) {
+      frag.appendChild(renderBlock(block));
+    });
+
+    return frag;
+  }
+
+  function renderBlock(block) {
+    var type = block.type;
+    var el;
+
+    switch (type) {
+      case 'heading':
+        el = document.createElement('h' + (block.level || 2));
+        el.id = slug(block.text);
+        el.textContent = block.text;
+        return el;
+
+      case 'paragraph':
+        el = document.createElement('p');
+        el.innerHTML = parseInline(block.text);
+        return el;
+
+      case 'code':
+        var wrapper = document.createElement('div');
+        wrapper.style.position = 'relative';
+
+        var lang = document.createElement('div');
+        lang.style.cssText = 'font-size:0.7rem;color:var(--text-secondary);margin-bottom:0.25rem;text-transform:uppercase;letter-spacing:0.05em;';
+        lang.textContent = block.language || 'text';
+        wrapper.appendChild(lang);
+
+        var copyBtn = document.createElement('button');
+        copyBtn.className = 'copy-btn';
+        copyBtn.textContent = '复制';
+        copyBtn.addEventListener('click', function() {
+          navigator.clipboard.writeText(block.code).then(function() {
+            copyBtn.textContent = '已复制!';
+            copyBtn.classList.add('copied');
+            setTimeout(function() { copyBtn.textContent = '复制'; copyBtn.classList.remove('copied'); }, 2000);
+          });
+        });
+
+        var pre = document.createElement('pre');
+        var code = document.createElement('code');
+        code.innerHTML = highlightCode(block.code, block.language);
+        pre.appendChild(code);
+        wrapper.appendChild(copyBtn);
+        wrapper.appendChild(pre);
+        return wrapper;
+
+      case 'list':
+        el = document.createElement(block.ordered ? 'ol' : 'ul');
+        (block.items || []).forEach(function(item) {
+          var li = document.createElement('li');
+          li.innerHTML = parseInline(item);
+          el.appendChild(li);
+        });
+        return el;
+
+      case 'image':
+        el = document.createElement('figure');
+        el.style.margin = '1rem 0';
+        var img = document.createElement('img');
+        img.src = block.src;
+        img.alt = block.alt || '';
+        img.loading = 'lazy';
+        el.appendChild(img);
+        if (block.caption) {
+          var cap = document.createElement('figcaption');
+          cap.style.cssText = 'font-size:0.8rem;color:var(--text-secondary);text-align:center;margin-top:0.4rem;';
+          cap.textContent = block.caption;
+          el.appendChild(cap);
+        }
+        return el;
+
+      case 'table':
+        el = document.createElement('table');
+        if (block.headers) {
+          var thead = document.createElement('thead');
+          var tr = document.createElement('tr');
+          block.headers.forEach(function(h) {
+            var th = document.createElement('th');
+            th.textContent = h;
+            tr.appendChild(th);
+          });
+          thead.appendChild(tr);
+          el.appendChild(thead);
+        }
+        if (block.rows) {
+          var tbody = document.createElement('tbody');
+          block.rows.forEach(function(row) {
+            var tr2 = document.createElement('tr');
+            row.forEach(function(cell) {
+              var td = document.createElement('td');
+              td.textContent = cell;
+              tr2.appendChild(td);
+            });
+            tbody.appendChild(tr2);
+          });
+          el.appendChild(tbody);
+        }
+        return el;
+
+      case 'blockquote':
+        el = document.createElement('blockquote');
+        el.textContent = block.text;
+        return el;
+
+      case 'divider':
+        return document.createElement('hr');
+
+      case 'callout':
+        el = document.createElement('div');
+        el.className = 'callout callout-' + (block.calloutType || 'info');
+        var iconMap = { info: 'ℹ️', warning: '⚠️', tip: '💡' };
+        el.innerHTML = '<span>' + (iconMap[block.calloutType] || 'ℹ️') + '</span><div>' + parseInline(block.text || '') + '</div>';
+        return el;
+
+      default:
+        el = document.createElement('p');
+        el.textContent = JSON.stringify(block);
+        return el;
+    }
+  }
+
+  // ---- Inline formatting ----
+  function parseInline(text) {
+    var html = esc(text);
+    html = html.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
+    html = html.replace(/\*(.+?)\*/g, '<em>$1</em>');
+    html = html.replace(/`(.+?)`/g, '<code>$1</code>');
+    html = html.replace(/\[(.+?)\]\((.+?)\)/g, function(m, t, url) {
+      var ext = url.startsWith('http') ? ' target="_blank" rel="noopener"' : '';
+      return '<a href="' + url + '"' + ext + '>' + t + '</a>';
+    });
+    return html;
+  }
+
+  // ---- Syntax highlighting ----
+  function highlightCode(code, lang) {
+    var html = esc(code);
+    // Strings
+    html = html.replace(/(&quot;(?:[^&]|&(?!quot;))*&quot;)/g, '<span class="hl-string">$1</span>');
+    html = html.replace(/(&#39;(?:[^&]|&(?!amp;))*&#39;)/g, '<span class="hl-string">$1</span>');
+    // Comments
+    html = html.replace(/(\/\/.*)/g, '<span class="hl-comment">$1</span>');
+    html = html.replace(/(\/\*[\s\S]*?\*\/)/g, '<span class="hl-comment">$1</span>');
+    // Numbers
+    html = html.replace(/\b(\d+\.?\d*)\b/g, '<span class="hl-number">$1</span>');
+    // Keywords
+    var keywords = {
+      js: ['const','let','var','function','return','if','else','for','while','class','export','import','from','async','await','try','catch','throw','new','this','null','undefined','true','false'],
+      python: ['def','class','return','if','elif','else','for','while','import','from','as','try','except','finally','with','pass','break','continue','in','is','not','and','or','True','False','None'],
+      c: ['int','char','float','double','void','long','short','unsigned','const','static','struct','enum','typedef','sizeof','return','if','else','for','while','switch','case','break','include','define','NULL'],
+      bash: ['if','then','else','fi','for','while','do','done','echo','cd','ls','export','source','git','npm','sudo','mkdir','rm','cp','mv','cat','grep']
+    };
+    var kw = keywords[lang] || [];
+    kw.forEach(function(k) {
+      html = html.replace(new RegExp('\\b(' + k + ')\\b', 'g'), '<span class="hl-keyword">$1</span>');
+    });
+    // Function calls
+    html = html.replace(/\b([a-zA-Z_]\w*)\s*\(/g, '<span class="hl-function">$1</span>(');
+    return html;
+  }
+
+  // ---- Utilities ----
+  function esc(str) {
+    return str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+  }
+
+  function slug(text) {
+    return text.toLowerCase().replace(/[^\w一-鿿\s-]/g, '').replace(/[\s_]+/g, '-').replace(/-+/g, '-').replace(/^-|-$/g, '');
+  }
+
+  // ---- Routing ----
+  function handleRoute() {
+    var hash = window.location.hash;
+    if (hash.startsWith('#/')) {
+      var id = hash.substring(2).split('?')[0];
+      if (id && tutorials.length > 0) loadTutorial(id);
+    }
+  }
+
+  window.addEventListener('hashchange', handleRoute);
+
+  // Wait for tutorials to load then handle initial route
+  var origFetch = fetch;
+  var indexPromise = origFetch('tutorials/data/index.json').then(function(r) { return r.json(); });
+  indexPromise.then(function(data) {
+    tutorials = data;
+    renderSidebar();
+    handleRoute();
+  });
+})();
+</script>
 
 </body>
 </html>
