@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>维护致歉弹窗 · 代码存档</title>
+</head>
+<body>
+<!-- ============================================================
+  维护致歉弹窗代码存档（已从 index.html 移除，网站正式上线）
+  需要再次启用时，把下面三个代码块分别粘贴回 index.html：
+    1. HTML 块 → 粘贴到 </body> 之前（lightbox 那一行之后）
+    2. CSS  块 → 粘贴到样式表末尾（.hidden 规则之后）
+    3. JS   块 → 粘贴到主 IIFE 内部（hoverCapable 声明之后）
+  注意：弹窗每次打开网站都会显示，「预览当前内容」按钮关闭。
+  ============================================================ -->
+
+<!-- ================== 代码块 1：HTML ================== -->
+<!--
+<div class="maint-overlay" id="maint-overlay" role="dialog" aria-modal="true" aria-label="网站维护中">
+  <div class="maint-dialog">
+    <div class="maint-icon" aria-hidden="true">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a4.5 4.5 0 0 0-6 6L3 18l3 3 5.7-5.7a4.5 4.5 0 0 0 6-6L14 13l-3-3 3.7-3.7z"/></svg>
+    </div>
+    <h2>网站维护中</h2>
+    <p class="maint-sub">正在添加新内容</p>
+    <p class="maint-text">非常抱歉给您带来不便。更多项目作品正在整理中，预计明日上线，敬请期待。感谢您的理解与耐心等待。</p>
+    <button class="maint-btn" id="maint-preview">预览当前内容</button>
+  </div>
+</div>
+-->
+
+<!-- ================== 代码块 2：CSS ================== -->
+<!--
+.maint-overlay{
+  position:fixed;inset:0;z-index:10000;
+  background:rgba(0,0,0,0.72);
+  backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+  display:flex;align-items:center;justify-content:center;
+  padding:1.5rem;
+}
+.maint-dialog{
+  max-width:420px;width:100%;text-align:center;
+  background:rgba(28,28,32,0.92);border:1px solid rgba(255,255,255,0.1);
+  border-radius:24px;padding:2.75rem 2.25rem 2.5rem;
+  box-shadow:0 24px 80px rgba(0,0,0,0.5);
+}
+.maint-icon{
+  width:64px;height:64px;margin:0 auto 1.5rem;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);
+  color:rgba(255,255,255,0.6);
+  animation:maint-spin 6s linear infinite;
+}
+.maint-icon svg{width:28px;height:28px}
+@keyframes maint-spin{to{transform:rotate(360deg)}}
+@media(prefers-reduced-motion:reduce){.maint-icon{animation:none}}
+.maint-dialog h2{font-size:1.45rem;font-weight:600;letter-spacing:-0.02em;color:rgba(255,255,255,0.92)}
+.maint-sub{font-size:0.85rem;color:rgba(255,255,255,0.5);margin-top:0.4rem}
+.maint-text{font-size:0.88rem;line-height:1.8;color:rgba(255,255,255,0.6);margin:1.4rem 0 1.75rem}
+.maint-btn{
+  padding:0.6rem 2rem;font-size:0.88rem;font-weight:500;font-family:inherit;
+  background:#fff;color:#000;border:none;border-radius:9999px;cursor:pointer;
+  transition:transform 0.25s var(--ease),opacity 0.25s;
+}
+.maint-btn:hover{opacity:0.88}
+.maint-btn:active{transform:scale(0.97)}
+@media(max-width:768px){
+  .maint-dialog{padding:2.25rem 1.5rem 2rem}
+}
+-->
+
+<!-- ================== 代码块 3：JS ================== -->
+<!--
+(function initMaint(){
+  var ov=document.getElementById('maint-overlay');
+  if(!ov)return;
+  document.getElementById('maint-preview').addEventListener('click',function(){
+    ov.classList.add('hidden');
+  });
+  document.addEventListener('keydown',function(e){
+    if(e.key==='Escape')ov.classList.add('hidden');
+  });
+})();
+-->
+
+</body>
+</html>
